@@ -14,7 +14,7 @@
 
         <!-- Styles -->
     </head>
-    <body class="min-w-full">
+    <body>
          <header class="top-0 p-3 text-right bg-black text-white">
             <nav>
                 @if (Route::has('login'))
@@ -28,16 +28,47 @@
                         @endif
 
                     @endauth
-                @endif    
+                @endif
             </nav>
-        </header>  
-        <main class="flex h-screen" style="background-image: url('{{ asset('images/main-screen.png') }}'); background-size: cover;">            
-            <div class="text-center">
-                <h1 class="text-blue-600">Welkom bij potion panic</h1>            
+        </header>
+        <main>
+            <div class="h-screen">
+                <section class="flex justify-center p-6 bg-gray-400">
+                    <img class="bg-auto" src="{{asset('images/main-screen.png')}}" alt="">
+                </section>
+                <div class="text-center bg-white p-6">
+                    <h1 class="text-blue-600 text-8xl mb-10">Welkom bij potion panic</h1>
+                    <div class="flex justify-between text-center text-white">
+                        <div class="bg-green-500 w-1/4 p-4">
+                            <p>blok1</p>
+                        </div>
+                        <div class="bg-yellow-500 w-1/4 p-4">
+                            <p>blok2</p>
+                        </div>
+                        <div class="bg-purple-500 w-1/4 p-4">
+                            <p>blok3</p>
+                        </div>
+                        <div class="bg-red-500 w-1/4 p-4">
+                            <p>blok4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="blok1" class="h-screen bg-green-500 text-white">
+                <h2>Doei</h1>
+            </div>
+            <div class="h-screen bg-yellow-500 text-white flex">
+                <h2>los</h2>
+            </div>
+            <div class="h-screen bg-purple-500 text-white flex">
+                <h2>los</h2>
+            </div>
+            <div class="h-screen bg-red-500 text-white flex">
+                <h2>loes</h2>
             </div>
         </main>
-        <footer>
-            <p class="bg-black p-3 text-center text-white">© 2023 - Potion Panic | ROC Nijmegen</p>
+        <footer class="h-auto p-3 bg-black text-center">
+            <p class="text-white">© 2023 - Potion Panic | ROC Nijmegen</p>
         </footer>
     </body>
 </html>
