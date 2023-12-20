@@ -16,6 +16,10 @@
                     <a href="{{ route('dashboard') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Dashboard</a>
                     <a href="{{ route('reviews.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Reviews</a>
                     <a href="{{ route('profile.edit') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Profiel</a>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <input type="submit" value="Log out" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">
+                    </form>
                 @else
                     <a href="{{ route('login') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Log in</a>
 
