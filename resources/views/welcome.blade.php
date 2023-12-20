@@ -37,11 +37,11 @@
             <div class="text-center">
                 <h2 class="text-4xl font-extrabold mb-8">Reviews van klanten!</h2>
             </div>
-            <div class="flex justify-center flex-wrap gap-8">
+            <div class="flex justify-center flex-wrap gap-8 max-w-full">
                 @foreach ($reviews as $review)
-                    <div class="w-72 p-6 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">
+                    <div class="w-2/5 p-6 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">
                         <h3 class="text-2xl font-bold text-white mb-4">{{ $review->titel_review }}</h3>
-                        <p class="text-gray-300">{{ $review->beschrijving_review }}</p>
+                        <p class="text-gray-300"><span class="indent-8">{{ $review->beschrijving_review }}</span></p>
                         <div class="flex items-center justify-between mt-6">
                             <div class="flex items-center">
                                 <svg class="text-yellow-400 w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
