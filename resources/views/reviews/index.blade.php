@@ -42,7 +42,7 @@
         <div class="text-white font-bold text-4xl text-center">
             <h1>Welkom bij de reviews pagina!</h1>
         </div>
-        <div class="text-white my-2 p-4 bg-sky-500 w-1/5 text-center rounded-lg">
+        <div class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 w-1/5 text-center">
             <a href="{{route('reviews.create')}}">Schrijf een review</a>
         </div>
         @foreach ($reviews as $review)

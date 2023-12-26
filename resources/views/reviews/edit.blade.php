@@ -47,7 +47,7 @@
                     @method('PUT')
                     <div class="mb-4">
                         <label for="titel_review" class="block text-gray-200 text-sm font-bold mb-2">Titel review *</label>
-                        <input type="text" name="titel_review" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('titel_review')}} {{$review->titel_review}}">
+                        <input type="text" name="titel_review" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('titel_review', $review->titel_review)}}">
                     </div>
                     <div class="mb-4">
                         <label for="beschrijving_review" class="block text-gray-200 text-sm font-bold mb-2">Beschrijving review *</label>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="rating" class="block text-gray-200 text-sm font-bold mb-2">Rating *</label>
-                        <input type="number" name="rating" step="0.1" min="0" max="5" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('rating')}}" placeholder="{{$review->rating}}">
+                        <input type="number" name="rating" step="0.1" min="0" max="5" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{ old('rating', $review->rating) }}" placeholder="{{ $review->rating }}">
                     </div>
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Verstuur</button>
                 </form>

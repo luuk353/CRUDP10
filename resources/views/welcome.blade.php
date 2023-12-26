@@ -16,10 +16,10 @@
                         <p>blok2</p>
                     </div>
                     <div class="bg-gradient-to-b from-purple-800 via-purple-700 to-purple-600 w-1/4 p-4">
-                        <p>blok3</p>
+                        <p><a href="#events">Events</a></p>
                     </div>
                     <div class="bg-gradient-to-b from-red-800 via-red-700 to-red-600 w-1/4 p-4">
-                        <p>blok4</p>
+                        <p><a href="#reviews">Reviews</a></p>
                     </div>
                 </div>
             </div>
@@ -30,8 +30,33 @@
         <div id="blok2" class="min-h-screen bg-gradient-to-b from-yellow-800 via-yellow-700 to-yellow-600 text-white p-4">
             <h2>los</h2>
         </div>
-        <div id="blok3" class="min-h-screen bg-gradient-to-b from-purple-800 via-purple-700 to-purple-600 text-white p-4">
-            <h2>los</h2>
+        <div id="events" class="min-h-screen bg-gradient-to-b from-purple-800 via-purple-700 to-purple-600 text-white p-4">
+            <div class="text-center">
+                <h2 class="text-4xl font-extrabold mb-8">Events van Panic Potion!</h2>
+            </div>
+            <div class="flex justify-center flex-wrap gap-8 max-w-full">
+                @foreach ($events as $event)
+                    <div class="w-2/5 p-6 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">
+                        <p>{{$event->event_foto}}</p>
+                        <h3 class="text-2xl font-bold text-white mb-4">{{ $event->event_naam }}</h3>
+                        <p class="text-gray-300"><span class="indent-8">{{ $event->event_beschrijving }}</span></p>
+                        <p>{{$event->event_locatie}}</p>
+                        <p>{{date('d-m-Y', strtotime($event->begin_datum))}}</p>
+                        <p>{{date('d-m-Y', strtotime($event->begin_datum))}}</p>
+                        <p>{{$event->begin_tijd}}</p>
+                        <p>{{$event->eind_tijd}}</p>
+                        <div>
+                            @if ($event->status == 0)
+                                <p class="bg-green-400 rounded-md p-2 mt-2 font-semibold">Gaat door</p>
+                            @elseif ($event->status == 1)
+                                <p>Event is bezig</p>
+                            @else
+                                <p>Afgelast</p>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div id="reviews" class="min-h-screen bg-gradient-to-b from-red-800 via-red-700 to-red-600 text-white p-4">
             <div class="text-center">

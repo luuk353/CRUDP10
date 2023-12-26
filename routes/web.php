@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
@@ -29,5 +31,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('reviews', ReviewController::class)->middleware('auth');
+
+Route::resource('events', EventsController::class)->middleware('auth');
+
+Route::prefix('admin')->middleware(['admin', 'auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
+});
 
 require __DIR__.'/auth.php';

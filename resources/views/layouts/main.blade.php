@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +13,15 @@
             @if (Route::has('login'))
                 @auth
                     <a href="{{ route('welcome') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Home</a>
-                    <a href="{{ route('dashboard') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Dashboard</a>
+                    @if (Auth::user()->admin == 1)
+                        <a href="{{ route('admin.dashboard') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Dashboard</a>
+                    @else
+                        <a href="{{ route('dashboard') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Dashboard</a>
+                    @endif
                     <a href="{{ route('reviews.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Reviews</a>
+                    <a href="{{ route('events.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Events</a>
                     <a href="{{ route('profile.edit') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Profiel</a>
+
                     <form action="{{route('logout')}}" method="post">
                         @csrf
                         <input type="submit" value="Log out" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">
