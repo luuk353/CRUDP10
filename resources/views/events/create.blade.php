@@ -21,31 +21,47 @@
             <div class="bg-gray-800 p-8 rounded-md shadow-md">
                 <form action="{{route('events.store')}}" method="post">
                     @csrf
-                    <div class="flex flex-col">
-                        <label for="event_naam" class="text-white">Naam event *</label>
-                        <input type="text" name="event_naam" id="event_naam" class="bg-white rounded-lg text-black" value="{{old('event_naam')}}" placeholder="Game event!">
-                        <label for="event_beschrijving" class="text-white">Beschrijving event *</label>
-                        <textarea name="event_beschrijving" id="event_beschrijving" class="bg-white rounded-lg" placeholder="De grootse game event van de wereld!">{{old('event_beschrijving')}}</textarea>
-                        <label for="event_locatie" class="text-white">Locatie event *</label>
-                        <input type="text" name="event_locatie" id="event_locatie" class="bg-white rounded-lg" value="{{old('event_locatie')}}" placeholder="Schoolstraat 12a, 6969lo, Amsterdam">
-                        <label for="begin_datum" class="text-white">Begin datum event</label>
-                        <input type="date" name="begin_datum" id="begin_datum" class="bg-white rounded-lg" value="{{ old('begin_datum') }}">
-                        <label for="begin_tijd" class="text-white">Begin tijd event</label>
-                        <input type="time" name="begin_tijd" id="begin_tijd" class="bg-white rounded-lg" value="{{ old('begin_tijd') }}">
-                        <label for="eind_datum" class="text-white">Eind datum event</label>
-                        <input type="date" name="eind_datum" id="eind_datum" class="bg-white rounded-lg" value="{{ old('eind_datum') }}">
-                        <label for="eind_tijd" class="text-white">Eind tijd event</label>
-                        <input type="time" name="eind_tijd" id="eind_tijd" class="bg-white rounded-lg" value="{{ old('eind_tijd') }}">
-                        <label for="event_foto" class="text-white">Event foto</label>
-                        <input type="file" name="event_foto" id="event_foto" class="bg-white rounded-lg" value="{{old('begin_datum')}}">
-                        <label for="event_status" class="text-white">Status event</label>
-                        <select name="event_status" id="event_status" class="rounded-lg mb-2">
+                    <div class="mb-4">
+                        <label for="event_naam" class="block text-gray-200 text-sm font-bold mb-2">Naam event *</label>
+                        <input type="text" name="event_naam" id="event_naam" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('event_naam')}}" placeholder="Game event!">
+                    </div>
+                    <div class="mb-4">
+                        <label for="event_beschrijving" class="block text-gray-200 text-sm font-bold mb-2">Beschrijving event *</label>
+                        <textarea name="event_beschrijving" id="event_beschrijving" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" placeholder="De grootse game event van de wereld!">{{old('event_beschrijving')}}</textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="event_locatie" class="block text-gray-200 text-sm font-bold mb-2">Locatie event *</label>
+                        <input type="text" name="event_locatie" id="event_locatie" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('event_locatie')}}" placeholder="Schoolstraat 12a, 6969lo, Amsterdam">
+                    </div>
+                    <div class="mb-4">
+                        <label for="begin_datum" class="block text-gray-200 text-sm font-bold mb-2e">Begin datum event</label>
+                        <input type="date" name="begin_datum" id="begin_datum" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{ old('begin_datum') }}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="begin_tijd" class="block text-gray-200 text-sm font-bold mb-2">Begin tijd event</label>
+                        <input type="time" name="begin_tijd" id="begin_tijd" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{ old('begin_tijd') }}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="eind_datum" class="block text-gray-200 text-sm font-bold mb-2">Eind datum event</label>
+                        <input type="date" name="eind_datum" id="eind_datum" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{ old('eind_datum') }}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="eind_tijd" class="block text-gray-200 text-sm font-bold mb-2">Eind tijd event</label>
+                        <input type="time" name="eind_tijd" id="eind_tijd" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{ old('eind_tijd') }}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="event_foto" class="block text-gray-200 text-sm font-bold mb-2">Event foto</label>
+                        <input type="file" name="event_foto" id="event_foto" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('begin_datum')}}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="event_status" class="block text-gray-200 text-sm font-bold mb-2e">Status event</label>
+                        <select name="event_status" id="event_status" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200">
                             <option value="0">Gaat door</option>
                             <option value="1">Wordt aangepast</option>
                             <option value="2">Afgelast</option>
                         </select>
-                        <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Verstuur</button>
                     </div>
+                    <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Verstuur</button>
                 </form>
             </div>
         </div>

@@ -38,6 +38,8 @@ class EventsController extends Controller
      */
     public function store(EventRequest $request)
     {
+        //dit moet nog aangepast worden dat de admin ook een foto kan toevoegen en dat de foto ook opgeslagen wordt, zodat het gedisplayed wordt voor de users om meer info te krijgen over het event
+
         Event::create($request->all());
 
         return redirect()->route('events.index');

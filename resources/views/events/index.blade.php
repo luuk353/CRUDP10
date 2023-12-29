@@ -4,11 +4,11 @@
 
 <main>
     <div class="min-h-screen bg-gradient-to-l from-emerald-400 via-green-400 to-cyan-600 p-4 max-w-full">
-        <div class="text-center text-black font-bold text-4xl">
-            <h1>Events</h1>
+        <div class="text-center text-white font-bold text-4xl">
+            <h1>Welkom bij de events pagina!</h1>
         </div>
         @if ($admin)
-            <div class="inline-block bg-orange-500 hover:bg-orange-700 text-black font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 w-1/5 text-center">
+            <div class="inline-block bg-orange-500 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 w-1/5 text-center">
                 <a href="{{route('events.create')}}">Maak een event</a>
             </div>
         @endif
