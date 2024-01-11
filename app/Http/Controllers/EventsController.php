@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EventsController extends Controller
 {
@@ -24,12 +25,6 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $admin = auth()->user()->admin;
-
-        if (!$admin) {
-            return redirect()->route('events.index');
-        }
-
         return view('events.create');
     }
 
@@ -38,9 +33,13 @@ class EventsController extends Controller
      */
     public function store(EventRequest $request)
     {
-        //dit moet nog aangepast worden dat de admin ook een foto kan toevoegen en dat de foto ook opgeslagen wordt, zodat het gedisplayed wordt voor de users om meer info te krijgen over het event
+        $event = Event::create($request->all());
 
-        Event::create($request->all());
+        $imageName = time().'.'.$request->event_foto->extension();
+        $request->event_foto->move(public_path('images'), $imageName);
+
+        $event->event_foto = $imageName;
+        $event->save();
 
         return redirect()->route('events.index');
     }
@@ -61,10 +60,7 @@ class EventsController extends Controller
     public function edit(string $id)
     {
         $event = Event::findOrFail($id);
-        $admin = auth()->user()->admin;
-        if (!$admin) {
-            return redirect()->route('events.index');
-        }
+
         return view('events.edit', compact('event'));
     }
 
@@ -73,7 +69,16 @@ class EventsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $event->update($request->all());
+
+        $imageName = time().'.'.$request->event_foto->extension();
+        $request->event_foto->move(public_path('images'), $imageName);
+
+        $event->event_foto = $imageName;
+        $event->save();
+
+        return redirect()->route('events.index');
     }
 
     /**

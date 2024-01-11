@@ -37,14 +37,14 @@
             <div class="flex justify-center flex-wrap gap-8 max-w-full">
                 @foreach ($events as $event)
                     <div class="w-2/5 p-6 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">
-                        <p>{{$event->event_foto}}</p>
-                        <h3 class="text-2xl font-bold text-white mb-4">{{ $event->event_naam }}</h3>
-                        <p class="text-gray-300"><span class="indent-8">{{ $event->event_beschrijving }}</span></p>
+                        <img class="w-full h-auto mb-4" src="{{ asset('images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
+                        <h3 class="text-2xl font-bold text-white mb-2">{{ $event->event_naam }}</h3>
+                        <p class="font-semibold mb-2"><span class="indent-8">{{ $event->event_beschrijving }}</span></p>
                         <p>{{$event->event_locatie}}</p>
                         <p>{{date('d-m-Y', strtotime($event->begin_datum))}}</p>
                         <p>{{date('d-m-Y', strtotime($event->begin_datum))}}</p>
-                        <p>{{$event->begin_tijd}}</p>
-                        <p>{{$event->eind_tijd}}</p>
+                        <p>{{date('H:i', strtotime($event->begin_tijd))}}</p>
+                        <p>{{date('H:i', strtotime($event->eind_tijd))}}</p>
                         <div>
                             @if ($event->status == 0)
                                 <p class="bg-green-400 rounded-md p-2 mt-2 font-semibold">Gaat door</p>

@@ -15,6 +15,7 @@
         @foreach ($events as $event)
         <div class="flex flex-wrap justify-center mt-6 w-auto">
             <div class="bg-gray-900 h-2/5 w-4/5 text-white rounded-lg p-6">
+                <img class="w-full h-auto mb-4" src="{{ asset('images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
                 <h2 class="text-2xl font-bold text-center">Event naam: {{ $event->event_naam }}</h2>
                 <p class="font-bold my-2">Event beschrijving: <span class="indent-8">{{ $event->event_beschrijving }}</span></p>
                 <div class="flex">

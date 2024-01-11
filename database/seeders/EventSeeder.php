@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class EventSeeder extends Seeder
 {
@@ -14,22 +15,33 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = \Faker\Factory::create();
-
-        $faker = \Faker\Factory::create();
-
         DB::table('events')->insert([
-            'event_naam' => $faker->sentence(3),
-            'event_beschrijving' => $faker->paragraph,
-            'event_locatie' => $faker->address,
-            'begin_datum' => Carbon::now()->addDays($faker->numberBetween(1, 30)),
-            'eind_datum' => Carbon::now()->addDays($faker->numberBetween(31, 60)),
-            'begin_tijd' => Carbon::now()->setTimeFromTimeString($faker->time()),
-            'eind_tijd' => Carbon::now()->setTimeFromTimeString($faker->time()),
-            'event_foto' => $faker->imageUrl(),
-            'event_status' => $faker->randomElement(['0', '1', '2']),
-            'created_at' => now(),
-            'updated_at' => now(),
+            [
+                'event_naam' => 'De beste event!',
+                'event_beschrijving' => 'De beste event ooit in de hele wereld!',
+                'event_locatie' => 'Eventstraat 10, 6969 AB, EventStad',
+                'begin_datum' => Carbon::now(),
+                'eind_datum' => Carbon::now(),
+                'begin_tijd' => Carbon::now()->format('H:i'),
+                'eind_tijd' => Carbon::now()->format('H:i'),
+                'event_foto' => 'Flowcharts1.png',
+                'event_status' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'event_naam' => 'De tweede beste event!',
+                'event_beschrijving' => 'De tweede beste event ooit in de hele wereld!',
+                'event_locatie' => 'Tweedeeventstraat 11, 7070 AB, Tweede eventstad',
+                'begin_datum' => Carbon::now(),
+                'eind_datum' => Carbon::now(),
+                'begin_tijd' => Carbon::now()->format('H:i'),
+                'eind_tijd' => Carbon::now()->format('H:i'),
+                'event_foto' => 'Flowcharts2.png',
+                'event_status' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
         ]);
     }
 }

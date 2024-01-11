@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('event_locatie');
             $table->date('begin_datum')->nullable();
             $table->date('eind_datum')->nullable();
-            $table->time('begin_tijd')->nullable();
-            $table->time('eind_tijd')->nullable();
+            $table->time('begin_tijd')->nullable()->format('H:i');
+            $table->time('eind_tijd')->nullable()->format('H:i');
             $table->string('event_foto')->nullable();
             $table->integer('event_status');
             $table->timestamps();

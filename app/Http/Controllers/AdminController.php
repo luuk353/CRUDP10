@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminRequest;
+use App\Models\Event;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -37,11 +38,13 @@ class AdminController extends Controller
         return view('admin.showadmin', compact('admin'));
     }
 
+    //dashboard pagaina van de admin
     public function dashboard()
     {
         $reviews = Review::get()->sortBy('created_at');
+        $events = Event::get();
 
-        return view('admin.dashboard', compact('reviews'));
+        return view('admin.dashboard', compact('reviews', 'events'));
     }
 
     public function edit(string $id)

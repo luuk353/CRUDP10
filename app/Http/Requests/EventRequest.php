@@ -29,6 +29,7 @@ class EventRequest extends FormRequest
             'eind_datum' => ['required'],
             'begin_tijd' => ['required'],
             'eind_tijd' => ['required'],
+            'event_foto' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
         ];
     }
 
@@ -53,6 +54,10 @@ class EventRequest extends FormRequest
             'eind_tijd.after_or_equal' => 'De eind tijd moet groter zijn dan de begin tijd!',
             'begin_tijd.before_or_equal' => 'De begin tijd moet kleiner zijn dan de eind tijd!',
             'eind_tijd.before_or_equal' => 'De eind tijd moet kleiner zijn dan de begin tijd!',
+            'event_foto.required' => 'Je moet een foto uploaden!',
+            'event_foto.image' => 'Het moet een foto zijn!',
+            'event_foto.mimes' => 'Je foto moet een jpeg, png, jpg, gif of svg zijn!',
+            'event_foto.max' => 'Je foto mag maximaal 2MB groot zijn!',
         ];
     }
 }
