@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
@@ -26,8 +28,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profilepic', [ProfileController::class, 'updateprofilepic'])->name('profile.updateprofilepic');
 });
 
 Route::resource('reviews', ReviewController::class)->middleware('auth');
+
+Route::resource('events', EventsController::class)->middleware('auth');
+
+Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
+    Route::get('index', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('create', [AdminController::class, 'create'])->name('admin.create');
+    Route::post('create', [AdminController::class, 'store'])->name('admin.store');
+    Route::get('{admin}', [AdminController::class, 'show'])->name('admin.show');
+    Route::get('{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::patch('{admin}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
+});
 
 require __DIR__.'/auth.php';

@@ -34,12 +34,9 @@ class ReviewController extends Controller
     {
         $user = auth()->user();
 
-        Review::create([
-            'user_id' => $user->id,
-            'titel_review' => $request->titel_review,
-            'beschrijving_review' => $request->beschrijving_review,
-            'rating' => $request->rating,
-        ]);
+        $review = new Review($request->all());
+        $review->user_id = $user->id;
+        $review->save();
 
         return redirect()->route('reviews.index');
     }
