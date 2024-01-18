@@ -8,7 +8,12 @@
                 @else
                     <a href="{{ route('dashboard') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Dashboard</a>
                 @endif
-                <a href="{{ route('reviews.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Reviews</a>
+
+                @if(Auth::user()->admin == 1)
+                    <a href="{{ route('admin.reviews') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Reviews</a>
+                @else
+                    <a href="{{ route('reviews.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Reviews</a>
+                @endif
                 <a href="{{ route('events.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Events</a>
 
                 <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-11 h-11 rounded-full cursor-pointer" src="{{ asset('images/' . Auth::user()->profilepic) }}" alt="{{ Auth::user()->profilepic }}">

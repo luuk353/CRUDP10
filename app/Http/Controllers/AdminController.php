@@ -43,8 +43,9 @@ class AdminController extends Controller
     {
         $reviews = Review::get()->sortBy('created_at');
         $events = Event::get();
+        $admins = User::where('admin', 1)->get();
 
-        return view('admin.dashboard', compact('reviews', 'events'));
+        return view('admin.dashboard', compact('reviews', 'events', 'admins'));
     }
 
     public function edit(string $id)
@@ -68,5 +69,12 @@ class AdminController extends Controller
         $admin->delete();
 
         return redirect()->route('admin.index');
+    }
+
+    public function reviews()
+    {
+        $reviews = Review::get()->sortBy('created_at');
+
+        return view('admin.showreviews', compact('reviews'));
     }
 }
