@@ -36,22 +36,26 @@
             </div>
             <div class="flex justify-center flex-wrap gap-8 max-w-full">
                 @foreach ($events as $event)
-                    <div class="w-2/5 p-6 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">
+                    <div class="w-2/6 p-3 h-1/4 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">
                         <img class="w-full h-auto mb-4" src="{{ asset('images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
                         <h3 class="text-2xl font-bold text-white mb-2">{{ $event->event_naam }}</h3>
-                        <p class="font-semibold mb-2"><span class="indent-8">{{ $event->event_beschrijving }}</span></p>
-                        <p>{{$event->event_locatie}}</p>
-                        <p>{{date('d-m-Y', strtotime($event->begin_datum))}}</p>
-                        <p>{{date('d-m-Y', strtotime($event->begin_datum))}}</p>
-                        <p>{{date('H:i', strtotime($event->begin_tijd))}}</p>
-                        <p>{{date('H:i', strtotime($event->eind_tijd))}}</p>
+                        <p class="font-semibold mb-2"><span class="indent-8">Beschrijving: {{ $event->event_beschrijving }}</span></p>
+                        <p>Locatie van het event: {{$event->event_locatie}}</p>
+                        <div class="flex">
+                            <p class="mr-2">Begint om: {{date('H:i', strtotime($event->begin_tijd))}}</p>
+                            <p>{{date('d-m-Y', strtotime($event->begin_datum))}}</p>
+                        </div>
+                        <div class="flex">
+                            <p class="mr-2">Eindigt op: {{date('H:i', strtotime($event->eind_tijd))}}</p>
+                            <p>{{date('d-m-Y', strtotime($event->eind_datum))}}</p>
+                        </div>
                         <div>
-                            @if ($event->status == 0)
+                            @if ($event->event_status == 0)
                                 <p class="bg-green-400 rounded-md p-2 mt-2 font-semibold">Gaat door</p>
-                            @elseif ($event->status == 1)
-                                <p>Event is bezig</p>
+                            @elseif ($event->event_status == 1)
+                                <p class="bg-yellow-400 rounded-md p-2 mt-2 font-semibold">Event is bezig</p>
                             @else
-                                <p>Afgelast</p>
+                                <p class="bg-red-700 rounded-md p-2 mt-2 font-semibold">Afgelast</p>
                             @endif
                         </div>
                     </div>
@@ -59,8 +63,9 @@
             </div>
         </div>
         <div id="reviews" class="min-h-screen bg-gradient-to-b from-red-800 via-red-700 to-red-600 text-white p-4">
-            <div class="text-center">
+            <div class="text-center mb-8">
                 <h2 class="text-4xl font-extrabold mb-8">Reviews van klanten!</h2>
+                <a href="{{route('reviews.create')}}" class="bg-gray-800 p-4 rounded-md hover:bg-gray-500 duration-300">Schrijf je eigen review!</a>
             </div>
             <div class="flex justify-center flex-wrap gap-8 max-w-full">
                 @foreach ($reviews as $review)

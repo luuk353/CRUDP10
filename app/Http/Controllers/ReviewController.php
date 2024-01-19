@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\User;
 
 class ReviewController extends Controller
 {
@@ -77,9 +78,15 @@ class ReviewController extends Controller
      */
     public function destroy(string $id)
     {
+        $admin = User::findOrFail($id)->where('admin', 1);
         $review = Review::findOrFail($id);
         $review->delete();
 
-        return redirect()->route('reviews.index');
+        if($admin) {
+            return redirect()->route('admin.reviews');
+        }
+        else {
+            return redirect()->route('reviews.index');
+        }
     }
 }

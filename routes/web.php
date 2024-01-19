@@ -38,6 +38,7 @@ Route::resource('events', EventsController::class)->middleware('auth');
 Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
     Route::get('index', [AdminController::class, 'index'])->name('admin.index');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('reviews', [AdminController::class, 'reviews'])->name('admin.reviews');
     Route::get('create', [AdminController::class, 'create'])->name('admin.create');
     Route::post('create', [AdminController::class, 'store'])->name('admin.store');
     Route::get('{admin}', [AdminController::class, 'show'])->name('admin.show');
