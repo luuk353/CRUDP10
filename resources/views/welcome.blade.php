@@ -13,7 +13,7 @@
                         <p>blok1</p>
                     </div>
                     <div class="bg-gradient-to-b from-yellow-800 via-yellow-700 to-yellow-600 w-1/4 p-4">
-                        <p>blok2</p>
+                        <p><a href="#highscores">Highscores</a></p>
                     </div>
                     <div class="bg-gradient-to-b from-purple-800 via-purple-700 to-purple-600 w-1/4 p-4">
                         <p><a href="#events">Events</a></p>
@@ -27,13 +27,57 @@
         <div id="blok1" class="min-h-screen bg-gradient-to-b from-green-800 via-green-700 to-green-600 text-white p-4">
             <h2>Doei</h2>
         </div>
-        <div id="blok2" class="min-h-screen bg-gradient-to-b from-yellow-800 via-yellow-700 to-yellow-600 text-white p-4">
-            <h2>los</h2>
+        <div id="highscores" class="min-h-screen bg-gradient-to-b from-yellow-800 via-yellow-700 to-yellow-600 text-white p-4 max-w-full">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl font-extrabold mb-8">Highscores van Panic Potion!</h2>
+                <a href="{{route('highscore.create')}}" class="bg-gray-800 p-4 rounded-md hover:bg-gray-500 duration-300">Voeg je highscore toe!</a>
+            </div>
+            <div class="flex justify-center flex-wrap">
+                <div class="shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                            Highscores
+                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Bekijk een lijst met highscores</p>
+                        </caption>
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Score
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Speler
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($highscores as $highscore)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $highscore->score }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $highscore->user->name }}
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <div id="events" class="min-h-screen bg-gradient-to-b from-purple-800 via-purple-700 to-purple-600 text-white p-4">
-            <div class="text-center">
-                <h2 class="text-4xl font-extrabold mb-8">Events van Panic Potion!</h2>
-            </div>
+            @if(Auth::user())
+                @if(Auth::user()->admin == 1)
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-extrabold mb-8">Events van Panic Potion!</h2>
+                        <a href="{{route('events.create')}}" class="bg-gray-800 p-4 rounded-md hover:bg-gray-500 duration-300">Voeg een event toe!</a>
+                    </div>
+                @else
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-extrabold mb-8">Events van Panic Potion!</h2>
+                    </div>
+                @endif
+            @endif
             <div class="flex justify-center flex-wrap gap-8 max-w-full">
                 @foreach ($events as $event)
                     <div class="w-2/6 p-3 h-1/4 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">

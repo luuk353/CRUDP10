@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\HighscoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::middleware('auth')->group(function () {
 Route::resource('reviews', ReviewController::class)->middleware('auth');
 
 Route::resource('events', EventsController::class)->middleware('auth');
+
+Route::resource('highscore', HighscoreController::class)->middleware('auth');
+
+Route::get('/userhighscore', [HighscoreController::class, 'userhighscore'])->middleware('auth')->name('userhighscore');
 
 Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
     Route::get('index', [AdminController::class, 'index'])->name('admin.index');
