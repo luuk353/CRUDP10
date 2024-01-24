@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forum_posts', function (Blueprint $table){
+        Schema::create("news_posts", function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('text');
-
-            $table->foreignId('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->date('updated_at');
-            $table->date('created_at');
+            $table->text('beschrijving');
+            $table->date('datum');
         });
     }
 

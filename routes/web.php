@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\HighscoreController;
+use App\Http\Controllers\NewsPostsController;
+use App\Http\Controllers\ForumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +53,8 @@ Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
     Route::patch('{admin}', [AdminController::class, 'update'])->name('admin.update');
     Route::delete('{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
+
+Route::get('/news',[NewsPostsController::class,'index']);
+Route::resource('/forum', ForumController::class);
 
 require __DIR__.'/auth.php';
