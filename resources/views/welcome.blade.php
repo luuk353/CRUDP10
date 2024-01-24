@@ -77,6 +77,10 @@
                         <h2 class="text-4xl font-extrabold mb-8">Events van Panic Potion!</h2>
                     </div>
                 @endif
+            @else
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-extrabold mb-8">Events van Panic Potion!</h2>
+                </div>
             @endif
             <div class="flex justify-center flex-wrap gap-8 max-w-full">
                 @foreach ($events as $event)
