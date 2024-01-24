@@ -17,14 +17,28 @@
     <body>
          <header class="top-0 p-3 text-right bg-black text-white">
             <nav>
+
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}">Log in</a>
+                        <a class="pr-7" href="{{ url('/dashboard') }}">Dashboard</a>
+                        <a class="pr-7" href="{{ url('/forum') }}">forum</a>
+                        <a class="pr-7" href="{{ url('/news') }}">news</a>
+                        <a class="pr-7" href="{{ url('/') }}">home</a>
+                        <a class="pr-7" href="{{ route('login') }}">Log in</a>
+
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-2">Register</a>
+                            <a class="pr-7" href="{{ route('register') }}" class="ml-2">Register</a>
+                        @endif
+                    @else
+                        <a class="pr-7" href="{{ url('/forum') }}">forum</a>
+                        <a class="pr-7" href="{{ url('/news') }}">news</a>
+                        <a class="pr-7" href="{{ url('/') }}">home</a>
+                        <a class="pr-7" href="{{ route('login') }}">Log in</a>
+
+
+                        @if (Route::has('register'))
+                            <a class="pr-7" href="{{ route('register') }}" class="ml-2">Register</a>
                         @endif
 
                     @endauth
@@ -55,7 +69,7 @@
                 </div>
             </div>
             <div id="blok1" class="h-screen bg-green-500 text-white">
-                <h2>Doei</h1>
+                <h1>Doei</h1>
             </div>
             <div class="h-screen bg-yellow-500 text-white flex">
                 <h2>los</h2>
