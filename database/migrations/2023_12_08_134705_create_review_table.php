@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('product_id')->nullable();
             $table->string('titel_review')->nullable();
-            $table->string('titel_beschrijving')->nullable();
-            $table->integer('rating')->nullable();
+            $table->string('beschrijving_review')->nullable();
+            $table->decimal('rating', 2,1)->nullable();
             $table->timestamps();
         });
     }

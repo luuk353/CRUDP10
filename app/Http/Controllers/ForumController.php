@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\ForumPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\models\User;
+use Illuminate\Support\Facades\DB;
 
 class ForumController extends Controller
 {
@@ -14,7 +16,8 @@ class ForumController extends Controller
     }
     public function index()
     {
-        $forum = ForumPost::all();
+        $forum = DB::table('forum_posts as f')->join('users as u', 'u.id', '=', 'f.user_id')->select('u.name', 'f.*')->get();
+
         return view('forum.index', ['forum' => $forum]);
     }
 
