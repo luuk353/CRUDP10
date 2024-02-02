@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\shopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('reviews', ReviewController::class)->middleware('auth');
+Route::resource('shop', shopController::class);
 
 require __DIR__.'/auth.php';

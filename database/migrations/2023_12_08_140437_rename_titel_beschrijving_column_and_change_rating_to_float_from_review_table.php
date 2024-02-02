@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reviews', function (Blueprint $table) {
-            $table->renameColumn('titel_beschrijving', 'beschrijving_review');
+            //0$table->renameColumn('titel_beschrijving', 'beschrijving_review');
             $table->decimal('rating', 2, 1)->change();
         });
     }
