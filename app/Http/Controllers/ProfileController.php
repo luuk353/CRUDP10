@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfilePicUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -56,5 +57,18 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function updateprofilepic(ProfilePicUpdateRequest $request)
+    {
+        $request->user()->fill($request->validated());
+
+        $imageName = time().'.'.$request->profilepic->extension();
+        $request->profilepic->move(public_path('images/'), $imageName);
+
+        $request->user()->profilepic = $imageName;
+        $request->user()->save();
+
+        return redirect()->route('profile.edit')->with('status', 'Profile picture updated');
     }
 }

@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            //0$table->renameColumn('titel_beschrijving', 'beschrijving_review');
-            $table->decimal('rating', 2, 1)->change();
+        Schema::create("news_posts", function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('beschrijving');
+            $table->date('datum');
         });
     }
 
@@ -22,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('review', function (Blueprint $table) {
-
-        });
+        //
     }
 };

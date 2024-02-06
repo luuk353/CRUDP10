@@ -34,7 +34,7 @@
     <div class="bg-white rounded shadow p-6 max-w-md mx-auto">
         <h2 class="text-2xl font-bold mb-4 text-red-400">webshop</h2>
         <ul>
-    
+
                     @foreach ($items as $item)
 
                         {{$item->itemName}}
@@ -57,5 +57,3 @@
     </div>
 </body>
 </html>
-
-

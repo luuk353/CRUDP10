@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\User;
 
 class ReviewController extends Controller
 {
@@ -34,12 +35,9 @@ class ReviewController extends Controller
     {
         $user = auth()->user();
 
-        Review::create([
-            'user_id' => $user->id,
-            'titel_review' => $request->titel_review,
-            'beschrijving_review' => $request->beschrijving_review,
-            'rating' => $request->rating,
-        ]);
+        $review = new Review($request->all());
+        $review->user_id = $user->id;
+        $review->save();
 
         return redirect()->route('reviews.index');
     }
@@ -80,9 +78,15 @@ class ReviewController extends Controller
      */
     public function destroy(string $id)
     {
+        $admin = User::findOrFail($id)->where('admin', 1);
         $review = Review::findOrFail($id);
         $review->delete();
 
-        return redirect()->route('reviews.index');
+        if($admin) {
+            return redirect()->route('admin.reviews');
+        }
+        else {
+            return redirect()->route('reviews.index');
+        }
     }
 }

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Highscore;
 use App\Models\Review;
 
 class WelcomeController extends Controller
@@ -10,7 +11,9 @@ class WelcomeController extends Controller
     public function index()
     {
         $reviews = Review::get();
+        $events = Event::get();
+        $highscores = Highscore::orderBy('score', 'desc')->get();
 
-        return view('welcome', compact('reviews'));
+        return view('welcome', compact('reviews', 'events', 'highscores'));
     }
 }
