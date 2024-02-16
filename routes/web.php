@@ -10,6 +10,8 @@ use App\Http\Controllers\shopController;
 use App\Http\Controllers\HighscoreController;
 use App\Http\Controllers\NewsPostsController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +26,7 @@ use App\Http\Controllers\ForumController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('user/dashboard', [UserController::class, 'dashbord'])->middleware(['user'])->name('user.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,8 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profilepic', [ProfileController::class, 'updateprofilepic'])->name('profile.updateprofilepic');
 });
 
-Route::resource('reviews', ReviewController::class)->middleware('auth');
-Route::resource('shop', shopController::class);
+Route::resource('reviews', ReviewController::class)->middleware(['auth', 'user']);
+Route::resource('shop', shopController::class)->middleware(['auth', 'user']);
 
 Route::resource('events', EventsController::class)->middleware('auth');
 
@@ -44,6 +44,17 @@ Route::resource('highscore', HighscoreController::class)->middleware('auth');
 
 Route::get('/userhighscore', [HighscoreController::class, 'userhighscore'])->middleware('auth')->name('userhighscore');
 
+Route::prefix('achievements')->controller(AchievementController::class)->group(function () {
+   Route::get('/', [AchievementController::class, 'index'])->name('achievements.index');
+    Route::get('/create', [AchievementController::class, 'create'])->name('achievements.create')->middleware('admin');
+    Route::post('/', [AchievementController::class, 'store'])->name('achievements.store')->middleware('admin');
+    Route::get('/{achievement}', [AchievementController::class, 'show'])->name('achievements.show');
+    Route::get('/{achievement}/edit', [AchievementController::class, 'edit'])->name('achievements.edit')->middleware('admin');
+    Route::patch('/{achievement}', [AchievementController::class, 'update'])->name('achievements.update')->middleware('admin');
+    Route::delete('/{achievement}', [AchievementController::class, 'destroy'])->name('achievements.destroy')->middleware('admin');
+});
+
+//admin routes
 Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
     Route::get('index', [AdminController::class, 'index'])->name('admin.index');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

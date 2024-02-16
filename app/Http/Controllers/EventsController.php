@@ -36,7 +36,7 @@ class EventsController extends Controller
         $event = Event::create($request->all());
 
         $imageName = time().'.'.$request->event_foto->extension();
-        $request->event_foto->move(public_path('images'), $imageName);
+        $request->event_foto->storeAs('public/images', $imageName);
 
         $event->event_foto = $imageName;
         $event->save();
@@ -73,7 +73,7 @@ class EventsController extends Controller
         $event->update($request->all());
 
         $imageName = time().'.'.$request->event_foto->extension();
-        $request->event_foto->move(public_path('images'), $imageName);
+        $request->event_foto->storeAs('public/images', $imageName);
 
         $event->event_foto = $imageName;
         $event->save();

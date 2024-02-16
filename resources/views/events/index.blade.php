@@ -19,7 +19,7 @@
         <div class="flex flex-wrap justify-center mt-6 w-max-full min-h-screen gap-4">
             @foreach ($events as $event)
             <div class="bg-gray-900 h-2/6 w-2/6 text-white rounded-lg p-6">
-                <img class="w-full h-auto mb-4" src="{{ asset('images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
+                <img class="w-full h-auto mb-4" src="{{ asset('storage/images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
                 <h2 class="text-2xl font-bold text-center">Event naam: {{ $event->event_naam }}</h2>
                 <p class="font-bold my-2">Event beschrijving: <span class="indent-8">{{ $event->event_beschrijving }}</span></p>
                 <div class="flex">
