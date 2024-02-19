@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AchievementRequest;
 use App\Models\Achievement;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,6 +19,14 @@ class AchievementController extends Controller
         return view('achievement.index', compact('achievements'));
     }
 
+    public function myAchievements()
+    {
+        $user = auth()->user();
+        $achievements = Achievement::where('user_id', $user->id)->get();
+
+        return view('achievement.myachievements', compact('achievements'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -29,9 +38,12 @@ class AchievementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AchievementRequest $request)
     {
-        //
+        $achievement = new Achievement($request->all());
+        $achievement->save();
+
+        return redirect()->route('achievements.index');
     }
 
     /**
@@ -49,7 +61,9 @@ class AchievementController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $achievement = Achievement::findOrFail($id);
+
+        return view('achievement.edit', compact('achievement'));
     }
 
     /**
@@ -57,7 +71,10 @@ class AchievementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $achievement = Achievement::findOrFail($id);
+        $achievement->update($request->all());
+
+        return redirect()->route('achievements.index');
     }
 
     /**

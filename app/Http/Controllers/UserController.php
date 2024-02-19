@@ -11,8 +11,9 @@ class UserController extends Controller
     public function dashbord()
     {
         $user = auth()->user();
-        $reviews = Review::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
-        $highscores = Highscore::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+        $reviews = Review::where('user_id', $user->id)->count();
+        $highscores = Highscore::where('user_id', $user->id)->count();
+
 
         return view('user/dashboard', compact('reviews', 'highscores'));
     }

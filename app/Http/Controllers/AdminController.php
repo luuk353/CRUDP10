@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminRequest;
+use App\Models\Achievement;
 use App\Models\Event;
 use App\Models\Review;
 use App\Models\User;
@@ -44,8 +45,9 @@ class AdminController extends Controller
         $reviews = Review::get()->sortBy('created_at');
         $events = Event::get();
         $admins = User::where('admin', 1)->get();
+        $achievements = Achievement::get();
 
-        return view('admin.dashboard', compact('reviews', 'events', 'admins'));
+        return view('admin.dashboard', compact('reviews', 'events', 'admins', 'achievements'));
     }
 
     public function edit(string $id)

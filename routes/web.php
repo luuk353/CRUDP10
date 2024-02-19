@@ -46,6 +46,7 @@ Route::get('/userhighscore', [HighscoreController::class, 'userhighscore'])->mid
 
 Route::prefix('achievements')->controller(AchievementController::class)->group(function () {
    Route::get('/', [AchievementController::class, 'index'])->name('achievements.index');
+    Route::get('/user', [AchievementController::class, 'myAchievements'])->name('achievements.user')->middleware(['auth', 'user']);
     Route::get('/create', [AchievementController::class, 'create'])->name('achievements.create')->middleware('admin');
     Route::post('/', [AchievementController::class, 'store'])->name('achievements.store')->middleware('admin');
     Route::get('/{achievement}', [AchievementController::class, 'show'])->name('achievements.show');
