@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        <div class="bg-gradient-to-l from-yellow-200 via-orange-400 to-red-600 p-8 min-h-screen">
+        <div class="bg-gradient-to-l from-red-600 via-orange-400 to-yellow-200 p-8 min-h-screen">
             <div class="max-w-2xl mx-auto my-8 px-4 sm:px-6 lg:px-8">
                 <h1 class="text-4xl font-extrabold text-white mb-8">Maak een achievement!</h1>
                 <div class="mb-8">

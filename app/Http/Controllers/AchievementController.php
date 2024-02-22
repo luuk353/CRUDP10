@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AchievementRequest;
 use App\Models\Achievement;
 use App\Models\User;
+use App\Models\UserAchievement;
 use Illuminate\Http\Request;
 
 class AchievementController extends Controller
@@ -22,9 +23,9 @@ class AchievementController extends Controller
     public function myAchievements()
     {
         $user = auth()->user();
-        $achievements = Achievement::where('user_id', $user->id)->get();
+        $user_achievements = UserAchievement::where('user_id', $user->id)->get();
 
-        return view('achievement.myachievements', compact('achievements'));
+        return view('achievement.myachievements', compact('user_achievements'));
     }
 
     /**
@@ -52,8 +53,9 @@ class AchievementController extends Controller
     public function show(string $id)
     {
         $achievement = Achievement::findOrFail($id);
+        $user_achievements = UserAchievement::where('achievement_id', $achievement->id)->orderBy('created_at', 'desc')->get();
 
-        return view('achievement.show', compact('achievement'));
+        return view('achievement.show', compact('achievement', 'user_achievements'));
     }
 
     /**

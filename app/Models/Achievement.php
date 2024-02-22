@@ -10,10 +10,5 @@ class Achievement extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'user_id'];
-
-    public function users(): BelongsTo
-    {
-        return $this->BelongsTo(User::class);
-    }
+    protected $guarded = [];
 }

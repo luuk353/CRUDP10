@@ -6,7 +6,7 @@
     <div class="min-h-screen bg-gradient-to-l from-emerald-400 via-green-400 to-cyan-600 p-4 max-w-full">
         <div class="w-full mx-auto my-8 px-4 sm:px-6 lg:px-8">
             <div class="bg-gray-800 text-white p-8 rounded-md shadow-md mb-8">
-                <img class="w-full h-auto mb-4" src="{{ asset('images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
+                <img class="w-full h-auto mb-4" src="{{ asset('storage/images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
                 <h3 class="text-2xl font-bold text-white mb-2">{{ $event->event_naam }}</h3>
                 <p class="font-semibold mb-2"><span class="indent-8">Beschrijving: {{ $event->event_beschrijving }}</span></p>
                 <p>Locatie van het event: {{$event->event_locatie}}</p>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <main class="min-h-screen bg-gradient-to-l from-yellow-200 via-orange-400 to-red-600 p-8">
+    <main class="min-h-screen bg-gradient-to-l from-red-600 via-orange-400 to-yellow-200 p-8">
         <div class="text-white font-bold text-5xl text-center mb-8">
             Welkom bij de achievement pagina!
         </div>
@@ -22,13 +22,13 @@
                     <h2 class="text-2xl font-bold text-center">Naam achievement: {{$achievement->name}}</h2>
                     <p class="font-bold my-2">Beschrijving achievement: <span class="indent-8">{{$achievement->description}}</span></p>
                     <div class="flex mt-2 flex-wrap">
-                        <p class="bg-sky-500 p-2 rounded-md w-auto text-center"><a href="{{route('achievements.show', $achievement->id)}}">Bekijk review</a></p>
+                        <p class="bg-sky-500 p-2 rounded-md w-auto text-center"><a href="{{route('achievements.show', $achievement->id)}}">Bekijk achievement</a></p>
                         @if(Auth()->user()->admin == 1)
                             <p class="bg-yellow-500 p-2 rounded-md mx-3 w-auto text-center"><a href="{{route('achievements.edit', $achievement->id)}}">Pas achievement aan</a></p>
                             <form action="{{route('achievements.destroy', $achievement->id)}}" method="post" class="bg-red-500 p-2 rounded-md w-auto text-center">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Verwijder review">
+                                <input type="submit" value="Verwijder achievement">
                             </form>
                         @endif
                     </div>

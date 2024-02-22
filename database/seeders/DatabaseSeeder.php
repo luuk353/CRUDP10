@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewSeeder::class);
         $this->call(EventSeeder::class);
         $this->call(HighscoreSeeder::class);
+        $this->call(AchievementSeeder::class);
+        $this->call(UserAchievementSeeder::class);
     }
 }
