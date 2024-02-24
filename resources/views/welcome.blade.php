@@ -10,7 +10,7 @@
                 <h1 class="text-blue-600 text-8xl mb-10">Welkom bij potion panic</h1>
                 <div class="flex justify-between text-center text-white">
                     <div class="bg-gradient-to-b from-green-800 via-green-700 to-green-600 w-1/4 p-4">
-                        <p>blok1</p>
+                        <p><a href="#achievements">Achievements</a></p>
                     </div>
                     <div class="bg-gradient-to-b from-yellow-800 via-yellow-700 to-yellow-600 w-1/4 p-4">
                         <p><a href="#highscores">Highscores</a></p>
@@ -24,8 +24,31 @@
                 </div>
             </div>
         </div>
-        <div id="blok1" class="min-h-screen bg-gradient-to-b from-green-800 via-green-700 to-green-600 text-white p-4">
-            <h2>Doei</h2>
+        <div id="achievements" class="min-h-screen bg-gradient-to-b from-green-800 via-green-700 to-green-600 text-white p-4">
+            @if(Auth::user())
+                @if(Auth::user()->admin == 1)
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-extrabold mb-8">Higscores van Panic Potion!</h2>
+                        <a href="{{route('achievements.create')}}" class="bg-gray-800 p-4 rounded-md hover:bg-gray-500 duration-300">Voeg je higscore toe!</a>
+                    </div>
+                @else
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-extrabold mb-8">Higscores van Panic Potion!</h2>
+                    </div>
+                @endif
+            @else
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-extrabold mb-8">Higscores van Panic Potion!</h2>
+                </div>
+            @endif
+            <div class="flex justify-center flex-wrap gap-8 max-w-full">
+                @foreach ($achievements as $achievement)
+                    <div class="w-2/5 p-6 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">
+                        <h3 class="text-2xl font-bold text-white mb-4">{{ $achievement->name }}</h3>
+                        <p class="text-gray-300"><span class="indent-8">{{ $achievement->description }}</span></p>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div id="highscores" class="min-h-screen bg-gradient-to-b from-yellow-800 via-yellow-700 to-yellow-600 text-white p-4 max-w-full">
             @if(Auth::user())
