@@ -78,7 +78,7 @@ class ReviewController extends Controller
      */
     public function destroy(string $id)
     {
-        $admin = User::findOrFail($id)->where('admin', 1);
+        $admin = auth()->user()->admin == 1;
         $review = Review::findOrFail($id);
         $review->delete();
 

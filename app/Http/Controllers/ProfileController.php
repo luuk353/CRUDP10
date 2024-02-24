@@ -64,7 +64,7 @@ class ProfileController extends Controller
         $request->user()->fill($request->validated());
 
         $imageName = time().'.'.$request->profilepic->extension();
-        $request->profilepic->move(public_path('images/'), $imageName);
+        $request->profilepic->storeAs('public/images', $imageName);
 
         $request->user()->profilepic = $imageName;
         $request->user()->save();

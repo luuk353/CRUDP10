@@ -6,7 +6,7 @@
                 @if (Auth::user()->admin == 1)
                     <a href="{{ route('admin.dashboard') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Dashboard</a>
                 @else
-                    <a href="{{ route('dashboard') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Dashboard</a>
+                    <a href="{{ route('user.dashboard') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Dashboard</a>
                 @endif
 
                 @if(Auth::user()->admin == 1)
@@ -16,9 +16,10 @@
                 @endif
                 <a href="{{ route('events.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Events</a>
                 <a href="{{ route('highscore.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Highscore</a>
-                <a href="{{ url('/forum') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">forum</a>
+                <a href="{{ url('/forum') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Forum</a>
+                <a href="{{ route('achievements.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Achievement</a>
 
-                <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-11 h-11 rounded-full cursor-pointer" src="{{ asset('images/' . Auth::user()->profilepic) }}" alt="{{ Auth::user()->profilepic }}">
+                <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-11 h-11 rounded-full cursor-pointer" src="{{ asset('storage/images/' . Auth::user()->profilepic) }}" alt="{{ Auth::user()->profilepic }}">
                 <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                         <div>{{ Auth::user()->name }}</div>
@@ -31,7 +32,7 @@
                             </li>
                         @else
                             <li>
-                                <a href="{{route('dashboard')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                <a href="{{route('user.dashboard')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
                             </li>
                         @endif
                         <li>

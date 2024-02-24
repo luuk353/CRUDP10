@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Achievement;
 use App\Models\User;
+use App\Models\UserAchievement;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -45,6 +47,13 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        $achievement = Achievement::find(1);
+
+        UserAchievement::create([
+            'user_id' => $user->id,
+           'achievement_id' => $achievement->id
+        ]);
+
 
         return redirect(RouteServiceProvider::HOME);
     }

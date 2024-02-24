@@ -28,10 +28,22 @@
             <h2>Doei</h2>
         </div>
         <div id="highscores" class="min-h-screen bg-gradient-to-b from-yellow-800 via-yellow-700 to-yellow-600 text-white p-4 max-w-full">
-            <div class="text-center mb-8">
-                <h2 class="text-4xl font-extrabold mb-8">Highscores van Panic Potion!</h2>
-                <a href="{{route('highscore.create')}}" class="bg-gray-800 p-4 rounded-md hover:bg-gray-500 duration-300">Voeg je highscore toe!</a>
-            </div>
+            @if(Auth::user())
+                @if(Auth::user()->admin == 1)
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-extrabold mb-8">Higscores van Panic Potion!</h2>
+                    </div>
+                @else
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-extrabold mb-8">Higscores van Panic Potion!</h2>
+                        <a href="{{route('highscore.create')}}" class="bg-gray-800 p-4 rounded-md hover:bg-gray-500 duration-300">Voeg je higscore toe!</a>
+                    </div>
+                @endif
+            @else
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-extrabold mb-8">Higscores van Panic Potion!</h2>
+                </div>
+            @endif
             <div class="flex justify-center flex-wrap">
                 <div class="shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -85,7 +97,7 @@
             <div class="flex justify-center flex-wrap gap-8 max-w-full">
                 @foreach ($events as $event)
                     <div class="w-2/6 p-3 h-1/4 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">
-                        <img class="w-full h-auto mb-4" src="{{ asset('images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
+                        <img class="w-full h-auto mb-4" src="{{ asset('storage/images/' . $event->event_foto) }}" alt="{{ $event->event_naam }}">
                         <h3 class="text-2xl font-bold text-white mb-2">{{ $event->event_naam }}</h3>
                         <p class="font-semibold mb-2"><span class="indent-8">Beschrijving: {{ $event->event_beschrijving }}</span></p>
                         <p>Locatie van het event: {{$event->event_locatie}}</p>
@@ -111,10 +123,22 @@
             </div>
         </div>
         <div id="reviews" class="min-h-screen bg-gradient-to-b from-red-800 via-red-700 to-red-600 text-white p-4">
-            <div class="text-center mb-8">
-                <h2 class="text-4xl font-extrabold mb-8">Reviews van klanten!</h2>
-                <a href="{{route('reviews.create')}}" class="bg-gray-800 p-4 rounded-md hover:bg-gray-500 duration-300">Schrijf je eigen review!</a>
-            </div>
+            @if(Auth::user())
+                @if(Auth::user()->admin == 1)
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-extrabold mb-8">Reviews van Panic Potion!</h2>
+                    </div>
+                @else
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-extrabold mb-8">Reviews van Panic Potion!</h2>
+                        <a href="{{route('reviews.create')}}" class="bg-gray-800 p-4 rounded-md hover:bg-gray-500 duration-300">Schrijf een review!</a>
+                    </div>
+                @endif
+            @else
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl font-extrabold mb-8">Reviews van Panic Potion!</h2>
+                </div>
+            @endif
             <div class="flex justify-center flex-wrap gap-8 max-w-full">
                 @foreach ($reviews as $review)
                     <div class="w-2/5 p-6 bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300">

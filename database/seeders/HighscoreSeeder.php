@@ -18,7 +18,9 @@ class HighscoreSeeder extends Seeder
         DB::table('highscores')->insert([
             [
                 'user_id' => 2,
-                'score' => 200
+                'score' => 200,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }

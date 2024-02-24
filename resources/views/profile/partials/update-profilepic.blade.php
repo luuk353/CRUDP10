@@ -2,12 +2,15 @@
     @csrf
     @method('patch')
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="mb-4 bg-black p-4 rounded text-white">{{$error}}</div>
+        @endforeach
+    @endif
+
     <div>
         <label for="profilepic" class="text-lg font-medium text-gray-900">Update Profile Picture</label>
         <input id="profilepic" name="profilepic" type="file" class="mt-1 block w-full" />
-        @error('profilepic')
-            <p class="mt-2 text-sm text-red-500">{{ $message }}</p>
-        @enderror
     </div>
 
     <div class="flex items-center gap-4">
