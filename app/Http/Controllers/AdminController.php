@@ -79,4 +79,12 @@ class AdminController extends Controller
 
         return view('admin.showreviews', compact('reviews'));
     }
+
+    public function destroy_reviews(string $id)
+    {
+        $review = Review::findOrFail($id);
+        $review->delete();
+
+        return redirect()->route('admin.reviews');
+    }
 }

@@ -65,6 +65,7 @@ Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
     Route::get('{admin}', [AdminController::class, 'show'])->name('admin.show');
     Route::get('{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::patch('{admin}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('reviews/{review}', [AdminController::class, 'destroy_reviews'])->name('admin.destroy.review');
     Route::delete('{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
 

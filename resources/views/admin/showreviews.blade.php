@@ -15,7 +15,7 @@
                 <p class="font-bold my-2 text-yellow-300">Rating: {{$review->rating}}</p>
                 <p>Geschreven door: <span class="text-sky-300">{{$review->user->name}}</span></p>
                 <div class="flex mt-2 flex-wrap">
-                    <form action="{{route('reviews.destroy', $review->id)}}" method="post" class="bg-red-500 p-2 rounded-md w-auto text">
+                    <form action="{{route('admin.destroy.review', $review->id)}}" method="post" class="bg-red-500 p-2 rounded-md w-auto text">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="Verwijder review">
