@@ -18,6 +18,7 @@
                 <a href="{{ route('highscore.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Highscore</a>
                 <a href="{{ url('/forum') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Forum</a>
                 <a href="{{ route('achievements.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Achievement</a>
+                <a href="{{ route('shop.index') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Webshop</a>
 
                 <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-11 h-11 rounded-full cursor-pointer" src="{{ asset('storage/images/' . Auth::user()->profilepic) }}" alt="{{ Auth::user()->profilepic }}">
                 <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">

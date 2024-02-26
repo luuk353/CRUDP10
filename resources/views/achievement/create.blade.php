@@ -28,11 +28,11 @@
                         @csrf
                         <div class="mb-4">
                             <label for="name" class="block text-gray-200 text-sm font-bold mb-2">Naam achievement *</label>
-                            <input type="text" name="name" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('titel_review')}}">
+                            <input type="text" name="name" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('name')}}" placeholder="Naam van de achievement!">
                         </div>
                         <div class="mb-4">
                             <label for="description" class="block text-gray-200 text-sm font-bold mb-2">Beschrijving achievement *</label>
-                            <textarea name="description" class="border rounded w-full py-2 px-3 bg-gray-700 text-white resize-none focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('beschrijving_review')}}"></textarea>
+                            <textarea name="description" class="border rounded w-full py-2 px-3 bg-gray-700 text-white resize-none focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" placeholder="Beschrijving van de achievement!">{{old('description')}}</textarea>
                         </div>
                         <button type="submit" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Verstuur</button>
                     </form>

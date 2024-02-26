@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShopRequest;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
 use App\Models\Bestellingen;
-use Auth;
 
 class ShopController extends Controller
 {
@@ -15,6 +16,24 @@ class ShopController extends Controller
     {
         $items = Inventory::all();
         return view('shop.index', ['items' => $items]);
+    }
+
+    public function createproduct()
+    {
+        return view('shop.createproduct');
+    }
+
+    public function storeproduct(ShopRequest $request)
+    {
+        $inventories = Inventory::create($request->all());
+
+        $imageName = time().'.'.$request->picture->extension();
+        $request->picture->storeAs('public/images', $imageName);
+
+        $inventories->picture = $imageName;
+        $inventories->save();
+
+        return redirect()->route('shop.storeproduct');
     }
 
     /**
@@ -34,6 +53,7 @@ class ShopController extends Controller
         $shopitem->price = $request->input('price');
         $shopitem->amount = $request->input('amount');
         $shopitem->name = $request->input('name');
+
         $shopitem->user_id = Auth::id();
 
         $shopitem->save();
@@ -57,4 +77,3 @@ class ShopController extends Controller
 
     // Other methods (create, edit, update, destroy) remain unchanged.
 }
-?>  

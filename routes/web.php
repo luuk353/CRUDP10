@@ -6,7 +6,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\shopController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\HighscoreController;
 use App\Http\Controllers\NewsPostsController;
 use App\Http\Controllers\ForumController;
@@ -36,15 +36,20 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('reviews', ReviewController::class)->middleware(['auth', 'user']);
-Route::resource('shop', shopController::class)->middleware(['auth', 'user']);
 
+Route::prefix('shop')->controller(ShopController::class)->group(function () {
+    Route::get('/', [ShopController::class, 'index'])->name('shop.index');
+    Route::get('/createproduct', [ShopController::class, 'createproduct'])->name('shop.createproduct');
+    Route::post('/createproduct', [ShopController::class, 'storeproduct'])->name('shop.storeproduct');
+    Route::post('/', [ShopController::class, 'store'])->name('shop.store');
+});
 Route::resource('events', EventsController::class)->middleware('auth');
 
 Route::resource('highscore', HighscoreController::class)->middleware('auth');
 
 Route::get('/userhighscore', [HighscoreController::class, 'userhighscore'])->middleware('auth')->name('userhighscore');
 
-Route::prefix('achievements')->controller(AchievementController::class)->group(function () {
+Route::prefix('achievements')->group(function () {
    Route::get('/', [AchievementController::class, 'index'])->name('achievements.index');
     Route::get('/user', [AchievementController::class, 'myAchievements'])->name('achievements.user')->middleware(['auth', 'user']);
     Route::get('/create', [AchievementController::class, 'create'])->name('achievements.create')->middleware('admin');

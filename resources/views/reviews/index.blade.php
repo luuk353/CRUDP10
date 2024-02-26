@@ -4,11 +4,15 @@
 
 <main>
     <div class="min-h-screen bg-gradient-to-l from-purple-800 via-pink-700 to-red-600 p-4 max-w-full">
-        <div class="text-white font-bold text-4xl text-center">
+        <div class="text-white font-bold text-4xl text-center mb-8">
             <h1>Welkom bij de reviews pagina!</h1>
         </div>
-        <div class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 w-1/5 text-center">
-            <a href="{{route('reviews.create')}}">Schrijf een review</a>
+        <div class="flex justify-center mb-4">
+            @if (!Auth::user()->admin == 1)
+                <a href="{{ route('reviews.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+                    Schrijf een review!
+                </a>
+            @endif
         </div>
         @foreach ($reviews as $review)
         <div class="flex flex-wrap justify-center mt-6 w-auto">
@@ -29,6 +33,9 @@
             </div>
         </div>
         @endforeach
+        <div class="mt-4">
+            {{ $reviews->links() }}
+        </div>
     </div>
 </main>
 

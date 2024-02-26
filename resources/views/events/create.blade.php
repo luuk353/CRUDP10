@@ -51,7 +51,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="event_foto" class="block text-gray-200 text-sm font-bold mb-2">Event foto</label>
-                        <input type="file" name="event_foto" id="event_foto" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('begin_datum')}}">
+                        <input type="file" name="event_foto" id="event_foto" class="border rounded w-full bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('begin_datum')}}">
                     </div>
                     <div class="mb-4">
                         <label for="event_status" class="block text-gray-200 text-sm font-bold mb-2e">Status event</label>

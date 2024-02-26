@@ -36,6 +36,9 @@
                     <x-nav-link :href="route('achievements.index')" :active="request()->routeIs('achievements.index')">
                         {{ __('Achievements') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('shop.index')" :active="request()->routeIs('shop.index')">
+                        {{ __('Webshop') }}
+                    </x-nav-link>
                 </div>
             </div>
 

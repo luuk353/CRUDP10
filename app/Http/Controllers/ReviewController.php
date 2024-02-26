@@ -15,7 +15,7 @@ class ReviewController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $reviews = Review::where('user_id', $user->id)->get();
+        $reviews = Review::where('user_id', $user->id)->simplePaginate(10);
 
         return view('reviews.index', compact('reviews'));
     }

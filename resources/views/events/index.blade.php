@@ -4,18 +4,20 @@
 
 <main>
     <div class="min-h-screen bg-gradient-to-l from-emerald-400 via-green-400 to-cyan-600 p-4 max-w-full">
-        <div class="text-center text-white font-bold text-4xl">
+        <div class="text-center text-white font-bold text-4xl mb-8">
             @if($admin)
                 <h1>Alle events!</h1>
             @else
                 <h1>Welkom bij de events pagina!</h1>
             @endif
         </div>
-        @if ($admin)
-            <div class="inline-block bg-orange-500 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 w-1/5 text-center">
-                <a href="{{route('events.create')}}">Maak een event</a>
-            </div>
-        @endif
+        <div class="flex justify-center mb-4">
+            @if (Auth::user()->admin == 1)
+                <a href="{{ route('events.create') }}" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+                    Maak een event!
+                </a>
+            @endif
+        </div>
         <div class="flex flex-wrap justify-center mt-6 w-max-full min-h-screen gap-4">
             @foreach ($events as $event)
             <div class="bg-gray-900 h-2/6 w-2/6 text-white rounded-lg p-6">
