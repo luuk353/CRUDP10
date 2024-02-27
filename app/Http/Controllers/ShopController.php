@@ -6,6 +6,7 @@ use App\Http\Requests\ShopRequest;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
 use App\Models\Bestellingen;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -33,7 +34,7 @@ class ShopController extends Controller
         $inventories->picture = $imageName;
         $inventories->save();
 
-        return redirect()->route('shop.storeproduct');
+        return redirect()->route('shop.index');
     }
 
     /**
@@ -41,22 +42,13 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'itemName' => 'required|string',
-            'price' => 'required|numeric',
-            'amount' => 'required|integer',
-            'name' => 'required|string',
-        ]);
+        $user = auth()->user();
+        $inventory = Inventory::where('id', $request->input('inventory_id'))->first();
 
-        $shopitem = new Bestellingen();
-        $shopitem->itemName = $request->input('itemName');
-        $shopitem->price = $request->input('price');
-        $shopitem->amount = $request->input('amount');
-        $shopitem->name = $request->input('name');
-
-        $shopitem->user_id = Auth::id();
-
-        $shopitem->save();
+        $nieuwe_bestelling = Bestellingen::create($request->all());
+        $nieuwe_bestelling->inventory_id = $inventory->id;
+        $nieuwe_bestelling->user_id = $user->id;
+        $nieuwe_bestelling->save();
 
         return redirect()->route('shop.index')->with('success', 'Item ordered successfully!');
     }

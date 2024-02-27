@@ -25,7 +25,7 @@ class ShopRequest extends FormRequest
             'itemName' => ['required', 'string'],
             'price' => ['required', 'numeric'],
             'amount' => ['required', 'integer'],
-            'picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:5120'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ShopRequest extends FormRequest
             'picture.required' => 'Je moet een afbeelding toevoegen!',
             'picture.image' => 'Bestand moet een afbeelding zijn!',
             'picture.mimes' => 'Bestand moet een jpeg, png, jpg, gif of svg zijn!',
-            'picture.max' => 'Bestand mag maximaal 2MB groot zijn!',
+            'picture.max' => 'Bestand mag maximaal 5MB groot zijn!',
         ];
     }
 }

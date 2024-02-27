@@ -40,9 +40,11 @@ Route::resource('reviews', ReviewController::class)->middleware(['auth', 'user']
 Route::prefix('shop')->controller(ShopController::class)->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
     Route::get('/createproduct', [ShopController::class, 'createproduct'])->name('shop.createproduct');
-    Route::post('/createproduct', [ShopController::class, 'storeproduct'])->name('shop.storeproduct');
-    Route::post('/', [ShopController::class, 'store'])->name('shop.store');
+    Route::get('/{item}', [ShopController::class, 'show'])->name('shop.show');
+    Route::post('/{item}', [ShopController::class, 'store'])->name('shop.store');
+    Route::post('/storeproduct', [ShopController::class, 'storeproduct'])->name('shop.storeproduct');
 });
+
 Route::resource('events', EventsController::class)->middleware('auth');
 
 Route::resource('highscore', HighscoreController::class)->middleware('auth');

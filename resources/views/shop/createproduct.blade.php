@@ -17,9 +17,9 @@
                 @endforeach
             @endif
 
-            <div class="bg-gray-800 p-8 rounded-md shadow-md">
+            <div class="bg-gray-800 p-8 rounded-md shadow-2xl shadow-red-500/50">
                 <form action="{{route('shop.storeproduct')}}" method="post" enctype="multipart/form-data">
-                    @csrf
+                @csrf
                     <div class="mb-4">
                         <label for="itemName" class="block text-gray-200 text-sm font-bold mb-2">Product naam *</label>
                         <input type="text" name="itemName" id="itemName" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('itemName')}}" placeholder="T-shirt!">
@@ -36,7 +36,7 @@
                         <label for="picture" class="block text-gray-200 text-sm font-bold mb-2">Product foto</label>
                         <input type="file" name="picture" id="picture" class="border rounded w-full bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('picture')}}">
                     </div>
-                    <button type="button" class="text-white bg-gradient-to-l from-emerald-400 via-emerald-500 to-emerald-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 ">Verstuur</button>
+                    <button type="submit" class="text-white bg-gradient-to-l from-emerald-400 via-emerald-500 to-emerald-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 ">Verstuur</button>
                 </form>
             </div>
         </div>

@@ -16,14 +16,13 @@
         <div class="flex flex-wrap justify-center mt-6 w-max-full h-auto gap-4">
             @foreach($items as $item)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-2xl shadow-red-500/50 dark:bg-gray-800 dark:border-gray-700">
-                    <a href="{{route('shop.show', $item->id)}}">
-                        <img class="rounded-t-lg" src="{{ asset('storage/images/' . $item->picture) }}" alt="{{$item->picture}}" />
+                    <a href="{{route('shop.show', $item->id)}}" class="w-auto h-auto block">
+                        <img class="rounded-t-lg object-cover w-full" src="{{ asset('storage/images/' . $item->picture) }}" alt="{{$item->picture}}" />
                     </a>
                     <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                        </a>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$item->itemName}}</h5>
+                        <p class="mb-3 font-medium text-lg text-gray-700 dark:text-gray-400">Aantal: <span class="font-normal">{{$item->amount}}</span></p>
+                        <p class="mb-3 font-medium text-lg text-gray-700 dark:text-gray-400">Prijs: <span class="font-normal">{{$item->price}}</span></p>
                         <a href="{{route('shop.show', $item->id)}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Kopen
                             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
