@@ -15,6 +15,7 @@
                 Maak een nieuwe admin aan!
             </a>
         </div>
+        @include('components.flash')
         <div class="flex gap-3">
             {{-- events --}}
             <div class="bg-emerald-600 text-white p-4 rounded-lg w-1/6 text-center text-1xl font-semibold">

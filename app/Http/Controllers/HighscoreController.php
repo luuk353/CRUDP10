@@ -38,7 +38,7 @@ class HighscoreController extends Controller
         $highscore->user_id = $user->id;
         $highscore->save();
 
-        return redirect()->route('highscore.index');
+        return redirect()->route('highscore.index')->with('success', 'Succesvol highscore geplaatst!');
     }
 
     /**
@@ -69,7 +69,7 @@ class HighscoreController extends Controller
         $highscore = Highscore::findOrFail($id);
         $highscore->update($request->all());
 
-        return redirect()->route('highscore.index');
+        return redirect()->route('highscore.index')->with('success', 'Succesvol highscore aangepast!');
     }
 
     /**
@@ -80,7 +80,7 @@ class HighscoreController extends Controller
         $highscore = Highscore::findOrFail($id);
         $highscore->delete();
 
-        return redirect()->route('highscore.index');
+        return redirect()->route('highscore.index')->with('destroy', 'Succesvol highscore verwijderd!');
     }
 
     //highscores van de ingelogde user

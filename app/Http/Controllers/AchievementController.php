@@ -44,7 +44,7 @@ class AchievementController extends Controller
         $achievement = new Achievement($request->all());
         $achievement->save();
 
-        return redirect()->route('achievements.index');
+        return redirect()->route('achievements.index')->with('success', 'Succesvol achievement aangemaakt!');
     }
 
     /**
@@ -76,7 +76,7 @@ class AchievementController extends Controller
         $achievement = Achievement::findOrFail($id);
         $achievement->update($request->all());
 
-        return redirect()->route('achievements.index');
+        return redirect()->route('achievements.index')->with('success', 'Succesvol achievement aangepast!');
     }
 
     /**
@@ -87,6 +87,6 @@ class AchievementController extends Controller
         $achievement = Achievement::findOrFail($id);
         $achievement->delete();
 
-        return redirect()->route('achievements.index');
+        return redirect()->route('achievements.index')->with('destroy', 'Succesvol achievement verwijderd!');
     }
 }

@@ -29,7 +29,7 @@ class AdminController extends Controller
         $admin->admin = 1;
         $admin->save();
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.index')->with('success', 'Succesvol admin aangemaakt!');
     }
 
     public function show(string $id)
@@ -62,7 +62,7 @@ class AdminController extends Controller
         $admin = User::findOrFail($id);
         $admin->update($request->all());
 
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index')->with('success', 'Succesvol admin aangepast!');
     }
 
     public function destroy(string $id)
@@ -70,7 +70,7 @@ class AdminController extends Controller
         $admin = User::findOrFail($id);
         $admin->delete();
 
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index')->with('destroy', 'Succesvol admin verwijderd!');
     }
 
     public function reviews()
@@ -85,6 +85,6 @@ class AdminController extends Controller
         $review = Review::findOrFail($id);
         $review->delete();
 
-        return redirect()->route('admin.reviews');
+        return redirect()->route('admin.reviews')->with('destroy', 'Succesvol review verwijderd!');
     }
 }

@@ -13,6 +13,7 @@
                 </a>
             @endif
         </div>
+        @include('components.flash')
         <div class="flex flex-wrap justify-center mt-6 w-max-full h-auto gap-4">
             @foreach($items as $item)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-2xl shadow-red-500/50 dark:bg-gray-800 dark:border-gray-700">

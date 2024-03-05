@@ -41,7 +41,7 @@ class EventsController extends Controller
         $event->event_foto = $imageName;
         $event->save();
 
-        return redirect()->route('events.index');
+        return redirect()->route('events.index')->with('success', 'Succesvol event aangemaakt!');
     }
 
     /**
@@ -78,7 +78,7 @@ class EventsController extends Controller
         $event->event_foto = $imageName;
         $event->save();
 
-        return redirect()->route('events.index');
+        return redirect()->route('events.index')->with('success', 'Succesvol event aangepast!');
     }
 
     /**
@@ -89,6 +89,6 @@ class EventsController extends Controller
         $event = Event::findOrFail($id);
         $event->delete();
 
-        return redirect()->route('events.index');
+        return redirect()->route('events.index')->with('destroy', 'Succesvol event verwijderd!');
     }
 }

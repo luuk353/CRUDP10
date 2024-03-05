@@ -34,7 +34,7 @@ class ShopController extends Controller
         $inventories->picture = $imageName;
         $inventories->save();
 
-        return redirect()->route('shop.index');
+        return redirect()->route('shop.index')->with('success', "Item is succesvol toegevoegd in winkelwagen!");
     }
 
     /**
