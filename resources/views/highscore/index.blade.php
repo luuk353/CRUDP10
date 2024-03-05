@@ -13,6 +13,7 @@
             @endif
             <a href="{{route('userhighscore')}}" class="ml-2 bg-violet-500 hover:bg-violet-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Zie eigen highscores!</a>
         </div>
+        @include('components.flash')
         <div class="relative shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">

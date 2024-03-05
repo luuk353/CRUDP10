@@ -39,7 +39,7 @@ class ReviewController extends Controller
         $review->user_id = $user->id;
         $review->save();
 
-        return redirect()->route('reviews.index');
+        return redirect()->route('reviews.index')->with('success', 'Review succesvol geplaats!');
     }
 
     /**
@@ -70,7 +70,7 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $review->update($request->all());
 
-        return redirect()->route('reviews.index');
+        return redirect()->route('reviews.index')->with('success', 'Succesvol review aangepast!');
     }
 
     /**
@@ -83,10 +83,10 @@ class ReviewController extends Controller
         $review->delete();
 
         if($admin) {
-            return redirect()->route('admin.reviews');
+            return redirect()->route('admin.reviews')->with('destroy', 'Review succesvol verwijderd!');
         }
         else {
-            return redirect()->route('reviews.index');
+            return redirect()->route('reviews.index')->with('destroy', 'Review succesvol verwijderd!');
         }
     }
 }

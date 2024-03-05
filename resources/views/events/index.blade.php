@@ -18,6 +18,7 @@
                 </a>
             @endif
         </div>
+        @include('components.flash')
         <div class="flex flex-wrap justify-center mt-6 w-max-full min-h-screen gap-4">
             @foreach ($events as $event)
             <div class="bg-gray-900 h-2/6 w-2/6 text-white rounded-lg p-6">

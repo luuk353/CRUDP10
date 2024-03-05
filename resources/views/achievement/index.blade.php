@@ -16,6 +16,7 @@
                 </a>
             @endif
         </div>
+        @include('components.flash')
         @foreach ($achievements as $achievement)
             <div class="flex flex-wrap justify-center mt-6 w-auto">
                 <div class="bg-gray-900 h-2/5 w-4/5 text-white rounded-lg p-6">

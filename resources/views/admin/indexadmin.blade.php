@@ -15,6 +15,7 @@
                 Maak een nieuwe admin aan!
             </a>
         </div>
+        @include('components.flash')
         @foreach ($admins as $admin)
         <div class="flex flex-wrap justify-center mt-6 w-auto">
             <div class="bg-gray-900 h-2/5 w-4/5 text-white rounded-lg p-6">
