@@ -14,6 +14,7 @@
             @endif
         </div>
         @include('components.flash')
+        @if(!count($items) > 1)
         <div class="flex flex-wrap justify-center mt-6 w-max-full h-auto gap-4">
             @foreach($items as $item)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-2xl shadow-red-500/50 dark:bg-gray-800 dark:border-gray-700">
@@ -34,6 +35,13 @@
                 </div>
             @endforeach
         </div>
+        @else
+            @if(!auth()->user()->admin == 1)
+                <h1 class="text-center text-2xl text-white">Er zijn nog geen producten!!!</h1>
+            @else
+                <h1 class="text-center text-2xl text-white">Er zijn nog geen producten!!!</h1>
+            @endif
+        @endif
     </div>
 </main>
 @endsection

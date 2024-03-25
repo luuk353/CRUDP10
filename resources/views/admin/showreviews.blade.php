@@ -25,6 +25,11 @@
             </div>
         </div>
         @endforeach
+        <div class="flex justify-center mt-5">
+            <div class="flex">
+                {{ $reviews->onEachSide(5)->links() }}
+            </div>
+        </div>
     </div>
 </main>
 

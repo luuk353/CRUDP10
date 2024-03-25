@@ -11,7 +11,7 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $reviews = Review::get();
+        $reviews = Review::orderBy('created_at', 'desc')->limit(6)->get();
         $events = Event::get();
         $highscores = Highscore::orderBy('score', 'desc')->get();
         $achievements = Achievement::get();

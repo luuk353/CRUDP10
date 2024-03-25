@@ -1,5 +1,5 @@
 <header class="top-0 p-4 text-right bg-black from-purple-800 via-purple-600 to-purple-400 text-white animate-gradient shadow-md">
-    <nav class="container mx-auto flex justify-end items-center space-x-4">
+    <nav class="mx-auto flex justify-end items-center space-x-4">
         @if (Route::has('login'))
             @auth
                 <a href="{{ route('welcome') }}" class="hover:text-blue-300 transition duration-300 transform hover:scale-105">Home</a>

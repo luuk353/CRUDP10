@@ -75,7 +75,7 @@ class AdminController extends Controller
 
     public function reviews()
     {
-        $reviews = Review::get()->sortBy('created_at');
+        $reviews = Review::simplePaginate(10);
 
         return view('admin.showreviews', compact('reviews'));
     }

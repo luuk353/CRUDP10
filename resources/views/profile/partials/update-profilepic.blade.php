@@ -10,7 +10,7 @@
 
     <div>
         <label for="profilepic" class="text-lg font-medium text-gray-900">Update Profile Picture</label>
-        <input id="profilepic" name="profilepic" type="file" class="mt-1 block w-full" />
+        <input id="profilepic" name="profilepic" type="file" class="mt-1 block w-full" title="Profiel foto"/>
     </div>
 
     <div class="flex items-center gap-4">
