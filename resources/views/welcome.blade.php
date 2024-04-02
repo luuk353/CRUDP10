@@ -203,7 +203,4 @@
             </div>
         </div>
     </main>
-    <div class="min-h-screen w-full bg-slate-500 p-12">
-        <h1 class="text-3xl font-semibold text-white">Welkom bij de ganga!</h1>
-    </div>
 @endsection
