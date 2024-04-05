@@ -79,4 +79,8 @@ Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
 Route::get('/news',[NewsPostsController::class,'index']);
 Route::resource('/forum', ForumController::class);
 
+Route::fallback(function () {
+   return view('error/404');
+});
+
 require __DIR__.'/auth.php';
