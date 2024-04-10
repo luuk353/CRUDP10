@@ -11,6 +11,7 @@ use App\Http\Controllers\HighscoreController;
 use App\Http\Controllers\NewsPostsController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\AchievementController;
+use App\Http\Controllers\PusherController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -52,7 +53,7 @@ Route::resource('highscore', HighscoreController::class)->middleware('auth');
 Route::get('/userhighscore', [HighscoreController::class, 'userhighscore'])->middleware('auth')->name('userhighscore');
 
 Route::prefix('achievements')->group(function () {
-   Route::get('/', [AchievementController::class, 'index'])->name('achievements.index');
+    Route::get('/', [AchievementController::class, 'index'])->name('achievements.index');
     Route::get('/user', [AchievementController::class, 'myAchievements'])->name('achievements.user')->middleware(['auth', 'user']);
     Route::get('/create', [AchievementController::class, 'create'])->name('achievements.create')->middleware('admin');
     Route::post('/', [AchievementController::class, 'store'])->name('achievements.store')->middleware('admin');
@@ -63,7 +64,7 @@ Route::prefix('achievements')->group(function () {
 });
 
 //admin routes
-Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
+Route::prefix('admin')->middleware(['admin', 'auth'])->group(function () {
     Route::get('index', [AdminController::class, 'index'])->name('admin.index');
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('reviews', [AdminController::class, 'reviews'])->name('admin.reviews');
@@ -76,11 +77,15 @@ Route::prefix('admin')->middleware(['admin', 'auth'])->group( function() {
     Route::delete('{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
-Route::get('/news',[NewsPostsController::class,'index']);
+Route::get('/news', [NewsPostsController::class, 'index']);
 Route::resource('/forum', ForumController::class);
 
+Route::get('/live-chat/index', [PusherController::class, 'index'])->middleware(['auth'])->name('live-chat');
+Route::post('/live-chat/broadcast', [PusherController::class, 'broadcast'])->middleware(['auth'])->name('broadcast');
+Route::post('/live-chat/receive', [PusherController::class, 'receive'])->middleware(['auth'])->name('receive');
+
 Route::fallback(function () {
-   return view('error/404');
+    return view('error/404');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
