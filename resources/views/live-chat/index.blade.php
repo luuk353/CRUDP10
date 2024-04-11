@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <main class="flex min-h-screen justify-center bg-gradient-to-l from-purple-800 via-pink-700 to-red-600 p-12">
+    <main class="flex min-h-screen justify-center bg-gradient-to-l from-amber-300 via-pink-700 to-slate-600 p-12">
         <div class="chat w-full max-w-xl rounded-lg bg-white p-6 shadow-lg">
             <div class="top mb-4 flex items-center">
                 <img src="https://assets.edlin.app/images/rossedlin/03/rossedlin-03-100.jpg" alt="Avatar"
