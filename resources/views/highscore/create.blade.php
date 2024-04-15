@@ -1,33 +1,33 @@
-@extends('layouts.main')
+<x-section.main class="from-fuchsia-800 via-indigo-700 to-blue-600">
+    <x-section.main-tekst>
+        Schrijf je highscore!
+    </x-section.main-tekst>
+    <x-section.button-actie href=/highscore class="bg-amber-400 hover:bg-lime-600">
+        Terug naar index!
+    </x-section.button-actie>
 
-@section('content')
-    <main>
-        <div class="bg-gradient-to-l from-fuchsia-800 via-indigo-700 to-blue-600 py-8 h-screen">
-            <div class="max-w-2xl mx-auto my-8 px-4 sm:px-6 lg:px-8">
-                <h1 class="text-4xl font-extrabold text-white mb-8">Schrijf je highscore!</h1>
-                <div class="mb-8">
-                    <a href="{{ route('highscore.index') }}" class="inline-block bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                        Terug naar de index
-                    </a>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="mb-4 rounded bg-black p-4 text-white">{{ $error }}</div>
+        @endforeach
+    @endif
+
+    <div class="flex justify-center text-white">
+        <x-section.card class="bg-gray-700">
+            <form action="{{ route('highscore.store') }}" method="post">
+                @csrf
+                <div class="mb-4">
+                    <x-section.label for=score>
+                        Score *
+                    </x-section.label>
+                    <x-section.input type=number name=score id=score min=0 value="{{ old('score') }}"
+                        placeholder="Score van je run!" class="bg-gray-700" />
                 </div>
-
-                @if ($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <div class="mb-4 bg-black p-4 rounded text-white">{{$error}}</div>
-                    @endforeach
-                @endif
-
-                <div class="bg-gray-800 p-8 rounded-md shadow-md">
-                    <form action="{{ route('highscore.store') }}" method="post">
-                        @csrf
-                        <div class="mb-4">
-                            <label for="score" class="block text-gray-200 text-sm font-bold mb-2">Score *</label>
-                            <input type="number" name="score" min="0" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('score')}}" placeholder="Score van je run!">
-                        </div>
-                        <button type="submit" class="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Verstuur</button>
-                    </form>
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="hover:bg-whie transform rounded-full bg-emerald-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-white hover:text-black">Verstuur</button>
                 </div>
-            </div>
-        </div>
-    </main>
-@endsection
+            </form>
+        </x-section.card>
+    </div>
+</x-section.main>

@@ -30,9 +30,9 @@ class UserAchievementSeeder extends Seeder
                 'created_at' => now()
             ],
             [
-            'user_id' => 3,
-            'achievement_id' => 1,
-            'created_at' => now()
+                'user_id' => 4,
+                'achievement_id' => 1,
+                'created_at' => now()
             ]
         ]);
     }

@@ -1,26 +1,30 @@
-@extends('layouts.main')
-
-@section('content')
-    <main class="min-h-screen bg-gradient-to-l from-fuchsia-800 via-indigo-700 to-blue-600 p-8">
-        <div class="text-white font-bold text-5xl text-center mb-8">
+<x-section.main class="from-fuchsia-800 via-indigo-700 to-blue-600">
+    <x-section.main-tekst class="mb-4">
+        @if (!Auth::user()->admin == 1)
             Welkom bij de highscore pagina!
-        </div>
-        <div class="flex justify-center mb-4">
-            @if (!Auth::user()->admin == 1)
-                <a href="{{ route('highscore.create') }}" class="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                    Voeg nieuwe highscore toe
-                </a>
-            @endif
-            <a href="{{route('userhighscore')}}" class="ml-2 bg-violet-500 hover:bg-violet-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Zie eigen highscores!</a>
-        </div>
-        @include('components.flash')
-        <div class="relative shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                    Highscores
-                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Bekijk een lijst met highscores</p>
-                </caption>
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        @else
+            Alle highscores!
+        @endif
+    </x-section.main-tekst>
+    <div class="flex justify-center space-x-4">
+        @if (!Auth::user()->admin == 1)
+            <x-section.button-actie href=/highscore/create class="bg-fuchsia-500 hover:bg-yellow-300">
+                Voeg nieuwe highscore toe!
+            </x-section.button-actie>
+            <x-section.button-actie href=/userhighscore class="bg-teal-500 hover:bg-rose-600">
+                Mijn highscores!
+            </x-section.button-actie>
+        @endif
+    </div>
+    @include('components.flash')
+    <div class="relative shadow-md sm:rounded-lg">
+        <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+            <caption
+                class="bg-white p-5 text-left text-lg font-semibold text-gray-900 rtl:text-right dark:bg-gray-800 dark:text-white">
+                Highscores
+                <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Bekijk een lijst met highscores</p>
+            </caption>
+            <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Score
@@ -29,11 +33,11 @@
                         Speler
                     </th>
                 </tr>
-                </thead>
-                <tbody>
-                @foreach($highscores as $highscore)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            </thead>
+            <tbody>
+                @foreach ($highscores as $highscore)
+                    <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                             {{ $highscore->score }}
                         </td>
                         <td class="px-6 py-4">
@@ -41,8 +45,7 @@
                         </td>
                     </tr>
                 @endforeach
-                </tbody>
-            </table>
-        </div>
-    </main>
-@endsection
+            </tbody>
+        </table>
+    </div>
+</x-section.main>

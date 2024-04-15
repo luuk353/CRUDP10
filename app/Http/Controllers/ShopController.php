@@ -6,7 +6,6 @@ use App\Http\Requests\ShopRequest;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
 use App\Models\Bestellingen;
-use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -16,6 +15,7 @@ class ShopController extends Controller
     public function index()
     {
         $items = Inventory::all();
+
         return view('shop.index', ['items' => $items]);
     }
 
@@ -24,11 +24,11 @@ class ShopController extends Controller
         return view('shop.createproduct');
     }
 
-    public function storeproduct(ShopRequest $request)
+    public function productopslaan(ShopRequest $request)
     {
         $inventories = Inventory::create($request->all());
 
-        $imageName = time().'.'.$request->picture->extension();
+        $imageName = time() . '.' . $request->picture->extension();
         $request->picture->storeAs('public/images', $imageName);
 
         $inventories->picture = $imageName;

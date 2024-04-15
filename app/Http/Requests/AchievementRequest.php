@@ -22,8 +22,8 @@ class AchievementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'unique:achievements'],
-            'description' => ['required', 'unique:achievements'],
+            'name' => ['required', 'unique:achievements', 'max:50'],
+            'description' => ['required', 'unique:achievements', 'max:100'],
         ];
     }
 
@@ -31,10 +31,12 @@ class AchievementRequest extends FormRequest
     {
         return [
             [
-                'name.required' => 'Name is required',
-                'name.unique' => 'Name is already taken',
-                'description.required' => 'Description is required',
-                'description.unique' => 'Description is already taken',
+                'name.required' => 'Naam is verplicht',
+                'name.unique' => 'Naam bestaat al',
+                'name.max' => 'Naam mag maximaal 50 karakters lang zijn',
+                'description.required' => 'Beschrijving is verplicht',
+                'description.unique' => 'Beschrijving bestaat al',
+                'description.max' => 'Beschrijving mag maximaal 100 karakters lang zijn'
             ]
         ];
     }

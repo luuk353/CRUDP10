@@ -42,8 +42,8 @@ Route::prefix('shop')->controller(ShopController::class)->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
     Route::get('/createproduct', [ShopController::class, 'createproduct'])->name('shop.createproduct');
     Route::get('/{item}', [ShopController::class, 'show'])->name('shop.show');
-    Route::post('/{item}', [ShopController::class, 'store'])->name('shop.store');
-    Route::post('/storeproduct', [ShopController::class, 'storeproduct'])->name('shop.storeproduct');
+    Route::post('/productopslaan', [ShopController::class, 'productopslaan'])->name('productopslaan');
+    Route::post('/', [ShopController::class, 'store'])->name('shop.store');
 });
 
 Route::resource('events', EventsController::class)->middleware('auth');

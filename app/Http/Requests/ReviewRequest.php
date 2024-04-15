@@ -24,7 +24,7 @@ class ReviewRequest extends FormRequest
         return [
             'titel_review' => ['required', 'min:6', 'max:100'],
             'beschrijving_review' => ['required', 'max:150'],
-            'rating' => ['required'],
+            'rating' => ['required', 'max:5', 'min:0'],
         ];
     }
 
@@ -36,7 +36,9 @@ class ReviewRequest extends FormRequest
             'titel_review.min' => 'Titel van je review moet minimaal 6 karakters lang zijn!',
             'beschrijving_review.required' => 'Je moet een beschrijving schrijven!',
             'beschrijving_review.max' => 'Beschrijving mag maximaal 150 karakters lang zijn!',
-            'rating.required' => 'Je moet een cijfer geven!'
+            'rating.required' => 'Je moet een cijfer geven!',
+            'rating.max' => 'Rating moet maximaal 5 zijn!',
+            'rating.min' => 'Rating moet minimaal 0 zijn!',
         ];
     }
 }

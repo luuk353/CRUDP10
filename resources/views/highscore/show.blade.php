@@ -1,24 +1,15 @@
-@extends('layouts.main')
-
-@section('content')
-
-<main>
-    <div class="min-h-screen bg-gradient-to-l from-fuchsia-800 via-indigo-700 to-blue-600 p-8">
-        <div class="w-full mx-auto my-8 px-4 sm:px-6 lg:px-8">
-            <div class="bg-gray-800 text-white p-8 rounded-md shadow-md mb-8">
-                <p class="text-lg mb-4">Score: {{$highscore->score}}</p>
-                <p class="text-lg mb-4">Gepbuliceerd op: {{$highscore->created_at->format('H:i, d-m-Y')}}</p>
-                <p class="text-xl mb-4 text-yellow-400 font-bold">User: {{$highscore->user->name}}</p>
-            </div>
-
-            <div class="mb-8">
-                <a href="{{ route('highscore.index') }}" class="inline-block bg-fuchsia-500 hover:bg-fuchsia-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                    Terug naar de index
-                </a>
-            </div>
-        </div>
+<x-section.main class="from-fuchsia-800 via-indigo-700 to-blue-600">
+    <x-section.main-tekst>
+        Bekijk score!
+    </x-section.main-tekst>
+    <x-section.button-actie href=/userhighscore class="bg-slate-400 hover:bg-white hover:text-black">
+        Terug naar index!
+    </x-section.button-actie>
+    <div class="flex justify-center text-white">
+        <x-section.card class="bg-gray-700">
+            <p class="mb-4 text-lg">Score: {{ $highscore->score }}</p>
+            <p class="mb-4 text-lg">Gepbuliceerd op: {{ $highscore->created_at->format('H:i, d-m-Y') }}</p>
+            <p class="mb-4 text-xl font-bold text-yellow-400">User: {{ $highscore->user->name }}</p>
+        </x-section.card>
     </div>
-    </div>
-</main>
-
-@endsection
+</x-section.main>

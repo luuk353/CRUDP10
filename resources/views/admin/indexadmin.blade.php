@@ -1,39 +1,36 @@
-@extends('layouts.main')
-
-@section('content')
-
-<main>
-    <div class="min-h-screen bg-gradient-to-l from-gray-800 via-slate-700 to-zinc-600 p-4 max-w-full">
-        <div class="text-white font-bold text-4xl text-center">
-            <h1>Welkom bij de admin pagina!</h1>
-        </div>
-        <div class="mb-8 flex">
-            <a href="{{ route('admin.dashboard') }}" class="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                Ga naar dashboard!
-            </a>
-            <a href="{{route('admin.create')}}" class="mx-3 bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                Maak een nieuwe admin aan!
-            </a>
-        </div>
-        @include('components.flash')
+<x-section.main class="from-gray-800 via-slate-700 to-zinc-600">
+    <x-section.main-tekst>
+        Welkom bij de admin pagina
+    </x-section.main-tekst>
+    <div class="flex justify-center space-x-4">
+        <x-section.button-actie href=/admin/dashboard class="bg-amber-400 hover:bg-emerald-500">
+            Ga naar dashboard!
+        </x-section.button-actie>
+        <x-section.button-actie href=/admin/create class="bg-rose-500 hover:bg-cyan-500">
+            Maak een nieuwe admin!
+        </x-section.button-actie>
+    </div>
+    @include('components.flash')
+    <div class="mt-6 grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         @foreach ($admins as $admin)
-        <div class="flex flex-wrap justify-center mt-6 w-auto">
-            <div class="bg-gray-900 h-2/5 w-4/5 text-white rounded-lg p-6">
-                <h2 class="text-2xl font-bold text-center">Naam admin: {{$admin->name}}</h2>
-                <p class="font-bold my-2">Email admin: <span class="indent-8">{{$admin->email}}</span></p>
-                <div class="flex mt-2 flex-wrap">
-                    <p class="bg-sky-500 p-2 rounded-md w-auto text-center"><a href="{{route('admin.show', $admin->id)}}">Bekijk admin</a></p>
-                    <p class="bg-yellow-500 p-2 rounded-md mx-3 w-auto text-center"><a href="{{route('admin.edit', $admin->id)}}">Pas admin aan</a></p>
-                    <form action="{{ route('admin.destroy', $admin->id) }}" method="post" class="bg-red-500 p-2 rounded-md w-auto text-center">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Verwijder admin</button>
-                    </form>
+            <x-section.card class="bg-gray-800 text-white">
+                <div class="p-6">
+                    <h2 class="mb-4 text-center text-2xl font-bold">Naam admin: {{ $admin->name }}</h2>
+                    <p class="mb-2 font-bold">Email admin: <span class="ml-2">{{ $admin->email }}</span></p>
+                    <div class="mt-4 flex justify-center">
+                        <p class="mr-2 w-auto rounded-md bg-sky-500 p-2 text-center"><a
+                                href="{{ route('admin.show', $admin->id) }}">Bekijk</a></p>
+                        <p class="mr-2 w-auto rounded-md bg-yellow-300 p-2 text-center"><a
+                                href="{{ route('admin.edit', $admin->id) }}">Bewerk</a></p>
+                        <form action="{{ route('admin.destroy', $admin->id) }}" method="post"
+                            class="w-auto rounded-md bg-red-500 p-2 text-center">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Verwijder</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </x-section.card>
         @endforeach
     </div>
-</main>
-
-@endsection
+</x-section.main>

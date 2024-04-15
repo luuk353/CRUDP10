@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('success', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'Profiel succesvol aangepast');
     }
 
     /**
@@ -63,7 +63,7 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
-        $imageName = time().'.'.$request->profilepic->extension();
+        $imageName = time() . '.' . $request->profilepic->extension();
         $request->profilepic->storeAs('public/images', $imageName);
 
         $request->user()->profilepic = $imageName;

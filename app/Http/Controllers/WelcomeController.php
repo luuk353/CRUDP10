@@ -12,9 +12,9 @@ class WelcomeController extends Controller
     public function index()
     {
         $reviews = Review::orderBy('created_at', 'desc')->limit(6)->get();
-        $events = Event::get();
-        $highscores = Highscore::orderBy('score', 'desc')->get();
-        $achievements = Achievement::get();
+        $events = Event::limit(6)->get();
+        $highscores = Highscore::orderBy('score', 'desc')->limit(6)->get();
+        $achievements = Achievement::orderBy('created_at', 'desc')->limit(6)->get();
 
         return view('welcome', compact('reviews', 'events', 'highscores', 'achievements'));
     }

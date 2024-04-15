@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminRequest;
 use App\Models\Achievement;
+use App\Models\Bestellingen;
 use App\Models\Event;
+use App\Models\Highscore;
+use App\Models\Inventory;
 use App\Models\Review;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -42,12 +44,16 @@ class AdminController extends Controller
     //dashboard pagaina van de admin
     public function dashboard()
     {
-        $reviews = Review::get()->sortBy('created_at');
-        $events = Event::get();
-        $admins = User::where('admin', 1)->get();
-        $achievements = Achievement::get();
+        $events = Event::count();
+        $admins = User::where('admin', 1)->count();
+        $achievements = Achievement::count();
+        $reviews = Review::count();
+        $users = User::where('admin', 0)->count();
+        $products = Inventory::count();
+        $bestellingen = Bestellingen::count();
+        $highscores = Highscore::count();
 
-        return view('admin.dashboard', compact('reviews', 'events', 'admins', 'achievements'));
+        return view('admin.dashboard', compact('reviews', 'events', 'admins', 'achievements', 'users', 'products', 'bestellingen', 'highscores'));
     }
 
     public function edit(string $id)
@@ -75,7 +81,7 @@ class AdminController extends Controller
 
     public function reviews()
     {
-        $reviews = Review::simplePaginate(10);
+        $reviews = Review::simplePaginate(16);
 
         return view('admin.showreviews', compact('reviews'));
     }

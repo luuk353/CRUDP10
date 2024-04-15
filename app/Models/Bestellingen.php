@@ -10,13 +10,7 @@ class Bestellingen extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'itemName',
-        'price',
-        'amount',
-        'name',
-        'user_id'
-    ];
+    protected $guarded = [];
 
     public function user(): BelongsTo
     {

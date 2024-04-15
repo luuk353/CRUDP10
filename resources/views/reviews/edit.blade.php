@@ -1,45 +1,52 @@
-@extends('layouts.main')
+<x-section.main class="from-purple-800 via-pink-700 to-red-600">
+    <x-section.main-tekst>
+        Review bewerken!
+    </x-section.main-tekst>
+    <x-section.button-actie href=/reviews class="bg-orange-500 hover:bg-teal-500">
+        Terug naar index!
+    </x-section.button-actie>
 
-@section('content')
-<main>
-    <div class="bg-gradient-to-l from-purple-800 via-pink-700 to-red-600 py-8 h-screen">
-        <div class="max-w-2xl mx-auto my-8 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-extrabold text-white mb-8">Review aanpassen!</h1>
-            <div class="mb-8">
-                <a href="{{ route('reviews.index') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                    Terug naar de index
-                </a>
-            </div>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="mb-4 rounded bg-black p-4 text-white">{{ $error }}</div>
+        @endforeach
+    @endif
 
-            @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    <div class="mb-4 bg-black p-4 rounded text-white">{{$error}}</div>
-                @endforeach
-            @endif
-
-            <div class="bg-gray-800 p-8 rounded-md shadow-md">
-                <form action="{{ route('reviews.update', $review->id) }}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <div class="mb-4">
-                        <label for="titel_review" class="block text-gray-200 text-sm font-bold mb-2">Titel review *</label>
-                        <input type="text" name="titel_review" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('titel_review', $review->titel_review)}}">
-                    </div>
-                    <div class="mb-4">
-                        <label for="beschrijving_review" class="block text-gray-200 text-sm font-bold mb-2">Beschrijving review *</label>
-                        <textarea name="beschrijving_review" class="border rounded w-full py-2 px-3 bg-gray-700 text-white resize-none focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{old('beschrijving_review')}}">{{$review->beschrijving_review}}</textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="rating" class="block text-gray-200 text-sm font-bold mb-2">Rating *</label>
-                        <input type="number" name="rating" step="0.1" min="0" max="5" class="border rounded w-full py-2 px-3 bg-gray-700 text-white focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200" value="{{ old('rating', $review->rating) }}" placeholder="{{ $review->rating }}">
-                    </div>
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Verstuur</button>
-                </form>
-            </div>
-        </div>
+    <div class="flex justify-center text-white">
+        <x-section.card class="bg-gray-700">
+            <form action="{{ route('reviews.update', $review->id) }}" method="post">
+                @csrf
+                @method('PUT')
+                <div class="mb-4">
+                    <x-section.label for=titel_review>
+                        Titel review *
+                    </x-section.label>
+                    <x-section.input type=text name=titel_review id=titel_review
+                        placeholder="{{ old('titel_review', $review->titel_review) }}"
+                        value="{{ old('titel_review', $review->titel_review) }}" class="bg-gray-700" />
+                </div>
+                <div class="mb-4">
+                    <x-section.label for=beschrijving_review>
+                        Beschrijving review *
+                    </x-section.label>
+                    <x-section.textarea name=beschrijving_review id=beschrijving_review
+                        placeholder="{{ old('titel_review', $review->beschrijving_review) }}">
+                        {{ old('beschrijving_review', $review->beschrijving_review) }}
+                    </x-section.textarea>
+                </div>
+                <div class="mb-4">
+                    <x-section.label for=rating>
+                        Rating *
+                    </x-section.label>
+                    <x-section.input type=number name=rating id=rating min="0" step="0.1" max="5"
+                        placeholder="{{ old('titel_review', $review->rating) }}"
+                        value="{{ old('rating', $review->rating) }}" class="bg-gray-700" />
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="transform rounded-full bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:scale-105 hover:bg-blue-700">Verstuur</button>
+                </div>
+            </form>
+        </x-section.card>
     </div>
-
-
-
-</main>
-@endsection
+</x-section.main>

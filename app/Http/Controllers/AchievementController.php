@@ -15,7 +15,7 @@ class AchievementController extends Controller
      */
     public function index()
     {
-        $achievements = Achievement::all();
+        $achievements = Achievement::simplePaginate(16);
 
         return view('achievement.index', compact('achievements'));
     }

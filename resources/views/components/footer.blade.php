@@ -1,3 +1,3 @@
-<footer class="h-auto p-4 bg-black text-center bottom-0">
-    <p class="text-white text-sm">© 2023 - Potion Panic | ROC Nijmegen</p>
+<footer class="bottom-0 h-auto bg-black p-4 text-center">
+    <p class="text-sm text-white">© 2023 - Potion Panic | ROC Nijmegen</p>
 </footer>

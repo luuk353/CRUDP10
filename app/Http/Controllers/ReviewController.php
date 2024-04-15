@@ -15,7 +15,7 @@ class ReviewController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $reviews = Review::where('user_id', $user->id)->simplePaginate(10);
+        $reviews = Review::where('user_id', $user->id)->simplePaginate(16);
 
         return view('reviews.index', compact('reviews'));
     }
@@ -82,10 +82,9 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $review->delete();
 
-        if($admin) {
+        if ($admin) {
             return redirect()->route('admin.reviews')->with('destroy', 'Review succesvol verwijderd!');
-        }
-        else {
+        } else {
             return redirect()->route('reviews.index')->with('destroy', 'Review succesvol verwijderd!');
         }
     }

@@ -22,7 +22,7 @@ class HighscoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'score' => 'required|integer|min:0|max:99999999999999999999'
+            'score' => 'required|integer|min:0|max:99999999'
         ];
     }
 
@@ -32,7 +32,7 @@ class HighscoreRequest extends FormRequest
             'score.required' => 'Score is verplicht',
             'score.integer' => 'Score moet een getal zijn',
             'score.min' => 'Score moet minimaal 0 zijn',
-            'score.max' => 'Score mag maximaal 99999999999999999999 zijn'
+            'score.max' => 'Score mag maximaal 99999999 zijn'
         ];
     }
 }
