@@ -12,7 +12,7 @@
         </x-section.button-actie>
     @endif
     <x-flash />
-    <div class="flex justify-center text-center text-white">
+    <div class="flex justify-center p-4 text-center text-white">
         <div class="w-1/2 flex-col space-y-8">
             @foreach ($news as $new)
                 <x-section.card class="inner-shadow w-full400 bg-gray-700 shadow-black">
