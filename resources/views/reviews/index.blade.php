@@ -5,7 +5,7 @@
     <x-section.button-actie href=/reviews/create class="bg-green-400 hover:bg-yellow-300">
         Schrijf een review!
     </x-section.button-actie>
-    @include('components.flash')
+    <x-flash />
     <div class="mt-4 grid grid-cols-1 gap-6 text-white sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         @foreach ($reviews as $review)
             <x-section.card class="bg-gray-700">

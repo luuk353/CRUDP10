@@ -15,7 +15,7 @@
             Mijn achievements
         </x-section.button-actie>
     @endif
-    @include('components.flash')
+    <x-flash />
     <div class="mt-6 grid grid-cols-1 justify-center gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         @foreach ($achievements as $achievement)
             <x-section.card class="bg-gray-700 text-white">

@@ -40,6 +40,9 @@
                 <x-navlink href=/shop>
                     Webshop
                 </x-navlink>
+                <x-navlink href=/news>
+                    News
+                </x-navlink>
                 <x-navlink href=/live-chat/index>
                     Live Chat
                 </x-navlink>

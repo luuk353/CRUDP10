@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\NewsRequest;
 use App\Models\NewsPost;
 
 class NewsPostsController extends Controller
@@ -13,8 +13,9 @@ class NewsPostsController extends Controller
      */
     public function index()
     {
-        $news = NewsPost::all();
-        return view('news.index',['news' => $news]);
+        $news = NewsPost::orderBy('created_at')->simplePaginate(4);
+
+        return view('news.index', ['news' => $news]);
     }
 
     /**
@@ -22,15 +23,21 @@ class NewsPostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        //
+        // dit laat zien welke admin deze nieuwsblog heeft geschreven
+        $geschreven_user = auth()->user();
+        $news = new NewsPost($request->all());
+        $news->user_id = $geschreven_user->id;
+        $news->save();
+
+        return redirect()->route('news.index')->with('success', 'Nieuwsblog succesvol aangemaakt!');
     }
 
     /**
@@ -38,7 +45,9 @@ class NewsPostsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $news = NewsPost::findOrFail($id);
+
+        return view('news.show', compact('news'));
     }
 
     /**
@@ -46,15 +55,20 @@ class NewsPostsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $news = NewsPost::findOrFail($id);
+
+        return view('news.edit', compact('news'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(NewsRequest $request, string $id)
     {
-        //
+        $news = NewsPost::findOrFail($id);
+        $news->update($request->all());
+
+        return redirect()->route('news.index')->with('success', 'Nieuws blog succesvol bewerkt!');
     }
 
     /**
@@ -62,6 +76,9 @@ class NewsPostsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $news = NewsPost::findOrFail($id);
+        $news->delete();
+
+        return redirect()->route('news.index')->with('destroy', 'Nieuws blog succesvol verwijderd!');
     }
 }

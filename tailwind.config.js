@@ -15,6 +15,10 @@ export default {
             fontFamily: {
                 poppins: ["Poppins", "sans-serif"],
             },
+            colors: {
+                brown: "#c99a7f",
+                lightBrown: "#f7d8a3",
+            },
         },
     },
 

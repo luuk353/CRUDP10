@@ -58,8 +58,8 @@ Route::prefix('achievements')->group(function () {
     Route::get('/create', [AchievementController::class, 'create'])->name('achievements.create')->middleware('admin');
     Route::post('/', [AchievementController::class, 'store'])->name('achievements.store')->middleware('admin');
     Route::get('/{achievement}', [AchievementController::class, 'show'])->name('achievements.show');
-    Route::get('/{achievement}/edit', [AchievementController::class, 'edit'])->name('achievements.edit')->middleware('admin');
     Route::patch('/{achievement}', [AchievementController::class, 'update'])->name('achievements.update')->middleware('admin');
+    Route::get('/{achievement}/edit', [AchievementController::class, 'edit'])->name('achievements.edit')->middleware('admin');
     Route::delete('/{achievement}', [AchievementController::class, 'destroy'])->name('achievements.destroy')->middleware('admin');
 });
 
@@ -77,7 +77,16 @@ Route::prefix('admin')->middleware(['admin', 'auth'])->group(function () {
     Route::delete('{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
-Route::get('/news', [NewsPostsController::class, 'index']);
+Route::prefix('news')->middleware(['auth'])->group(function () {
+    Route::get('/', [NewsPostsController::class, 'index'])->name('news.index');
+    Route::get('/create', [NewsPostsController::class, 'create'])->name('news.create')->middleware(['admin']);
+    Route::post('/', [NewsPostsController::class, 'store'])->name('news.store');
+    Route::get('{post}', [NewsPostsController::class, 'show'])->name('news.show');
+    Route::get('{post}/edit', [NewsPostsController::class, 'edit'])->name('news.edit')->middleware('admin');
+    Route::patch('{post}', [NewsPostsController::class, 'update'])->name('news.update');
+    Route::delete('{post}', [NewsPostsController::class, 'destroy'])->name('news.destroy');
+});
+
 Route::resource('/forum', ForumController::class);
 
 Route::get('/live-chat/index', [PusherController::class, 'index'])->middleware(['auth'])->name('live-chat');
