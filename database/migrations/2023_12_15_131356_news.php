@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create("news_posts", function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('title');
             $table->text('beschrijving');
-            $table->date('datum');
+            $table->timestamps();
         });
     }
 

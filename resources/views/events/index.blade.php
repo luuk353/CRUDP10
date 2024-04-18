@@ -9,7 +9,7 @@
     <x-section.button-actie href=/events/create class="bg-red-500 hover:bg-cyan-600">
         Maak een event!
     </x-section.button-actie>
-    @include('components.flash')
+    <x-flash />
     <div class="mt-6 grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         @foreach ($events as $event)
             <x-section.card class="bg-zinc-600 text-white">

@@ -22,7 +22,7 @@ class HighscoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'score' => 'required|integer|min:0|max:99999999'
+            'score' => ['required', 'integer', 'min:0', 'max:99999999']
         ];
     }
 

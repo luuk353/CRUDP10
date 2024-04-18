@@ -10,7 +10,7 @@
             Maak een nieuwe admin!
         </x-section.button-actie>
     </div>
-    @include('components.flash')
+    <x-flash />
     <div class="mt-6 grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         @foreach ($admins as $admin)
             <x-section.card class="bg-gray-800 text-white">

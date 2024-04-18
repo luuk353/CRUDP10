@@ -1,6 +1,6 @@
-<x-section.main class="flex justify-center from-orange-500 via-purple-600 to-black">
+<x-section.main class="flex justify-center from-black via-purple-600 to-orange-500">
     <div class="flex flex-col flex-wrap justify-center space-y-4">
-        @include('components.flash')
+        <x-flash />
         <x-section.card class="border-black bg-white">
             @include('profile.partials.update-profile-information-form')
         </x-section.card>

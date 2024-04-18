@@ -11,7 +11,7 @@
             Voeg een product toe!
         </x-section.button-actie>
     @endif
-    @include('components.flash')
+    <x-flash />
     @if (count($items) > 0)
         <div
             class="w-max-full mt-6 grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

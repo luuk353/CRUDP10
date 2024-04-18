@@ -16,7 +16,7 @@
             </x-section.button-actie>
         @endif
     </div>
-    @include('components.flash')
+    <x-flash />
     <div class="relative shadow-md sm:rounded-lg">
         <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
             <caption
